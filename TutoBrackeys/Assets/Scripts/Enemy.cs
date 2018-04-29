@@ -1,7 +1,9 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using System.Collections.Generic;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour, IDamageable
+{
 
     public float startSpeed = 10f;
     public float startHealth = 100f;
@@ -26,17 +28,11 @@ public class Enemy : MonoBehaviour {
     public Alignement alignement;
 
     public Sprite image;
+    public GameObject speedEffect;
+    public GameObject healEffect;
 
-    //public Animator animator;
-
-    //private void Awake()
-    //{
-    //    if (GetComponent<Animator>())
-    //    {
-    //        animator = GetComponent<Animator>();
-    //    }
-    //}
-
+    private Dictionary<string, GameObject> effectDictionnary;
+  
 
     private void OnEnable()
     {
@@ -44,19 +40,15 @@ public class Enemy : MonoBehaviour {
         health = startHealth;
         enemyHealthBar = GetComponentInChildren<EnemyHealthBar>();
         isDead = false;
+        normalizedHealth = health / startHealth;
+        enemyHealthBar.UpdateEnnemyHealth(normalizedHealth);
+
+        effectDictionnary = new Dictionary<string, GameObject>();
+        effectDictionnary.Add("speedEffect", speedEffect);
+        effectDictionnary.Add("healEffect", healEffect);
     }
 
-    //private void Start()
-    //{
-    //    speed = startSpeed;
-    //    health = startHealth;
-    //    enemyHealthBar = GetComponentInChildren<EnemyHealthBar>();
 
-
-    //    //animator.SetBool("isWalking", true);
-
-    //    //animator.Play("Armature|ArmatureAction.001");
-    //}
 
 
 
@@ -72,9 +64,9 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public void Slow (float pct)
+    public void ModifySpeed (float multiplier)
     {
-        speed = startSpeed * (1f - pct);
+        speed = startSpeed * multiplier;
     }
 
     void Die()
@@ -91,6 +83,38 @@ public class Enemy : MonoBehaviour {
         WaveSpawner.EnemiesAlive--;
 
         MyObjectPooler.Instance.ReturnToPool(gameObject);
+    }
+
+    public Alignement GetAlignement()
+    {
+        return alignement;
+    }
+
+
+    public void Heal(float amount)
+    {
+        if (health + amount <= startHealth)
+            health += amount;
+        else
+            health = startHealth;
+
+        normalizedHealth = health / startHealth;
+        enemyHealthBar.UpdateEnnemyHealth(normalizedHealth);
+    }
+
+    public void TurnOnOffEffects(string effect, bool stateToTurn)
+    {
+        if (effectDictionnary[effect] == null)
+        {
+            Debug.Log("No effect with name " + effect);
+            return;
+        }
+
+        if (stateToTurn)
+            effectDictionnary[effect].SetActive(true);
+        else
+            effectDictionnary[effect].SetActive(false);
+
     }
 
 }

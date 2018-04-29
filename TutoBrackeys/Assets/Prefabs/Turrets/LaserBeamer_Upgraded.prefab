@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4388498152237846}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4440070169060488}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PartToRotate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4181664805547952}
   - component: {fileID: 198808566139239800}
   - component: {fileID: 199804039460441422}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LaserImpactEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 4217936271614682}
   - component: {fileID: 33137942521196166}
   - component: {fileID: 23323260128759874}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,9 +83,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4963903912357604}
-  - component: {fileID: 114134585623743250}
   - component: {fileID: 120384485382693696}
-  m_Layer: 0
+  - component: {fileID: 135596931624377854}
+  - component: {fileID: 114241737924910004}
+  m_Layer: 2
   m_Name: LaserBeamer_Upgraded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +103,7 @@ GameObject:
   - component: {fileID: 4852523095234182}
   - component: {fileID: 33463026109443520}
   - component: {fileID: 23658552685118068}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +120,7 @@ GameObject:
   - component: {fileID: 4122384133902918}
   - component: {fileID: 198727203345229946}
   - component: {fileID: 199253524433923712}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4273583686341284}
   - component: {fileID: 108829050528315312}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ImpactLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +375,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114134585623743250
+--- !u!114 &114241737924910004
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -382,23 +383,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1693828754586896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2d85dd7a4123244cb5703b803693a44, type: 3}
+  m_Script: {fileID: 11500000, guid: ff29a5ba3b1c12f4c98f70316942069f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 30
+  range: 15
   alignement: {fileID: 11400000, guid: cb4c44286a20f674a938c5e23b1c92fe, type: 2}
   fireRate: 1
   bulletPrefab: {fileID: 0}
+  enemyTag: Enemy
+  partToRotate: {fileID: 4440070169060488}
+  turnSpeed: 10
+  firePoint: {fileID: 4388498152237846}
   useLaser: 1
-  damageOverTime: 40
-  slowAmount: 0.8
+  damageOverTime: 30
+  slowAmount: 0.5
   lineRenderer: {fileID: 120384485382693696}
   impactEffect: {fileID: 198808566139239800}
   impactLight: {fileID: 108829050528315312}
-  enemyTag: Enemy
-  partToRotate: {fileID: 4440070169060488}
-  turnSpeed: 100
-  firePoint: {fileID: 4388498152237846}
 --- !u!120 &120384485382693696
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -487,6 +488,18 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!135 &135596931624377854
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1693828754586896}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.4999998
+  m_Center: {x: 0, y: 2.4999998, z: 2.083333}
 --- !u!198 &198727203345229946
 ParticleSystem:
   m_ObjectHideFlags: 1

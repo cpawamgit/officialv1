@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    private Transform target;
-    private Enemy targetEnemy;
+    protected Transform target;
+    protected IDamageable targetEnemy;
+    private SphereCollider sphereCollider;
+    
 
     [Header("General")]
 
@@ -18,16 +20,6 @@ public class Turret : MonoBehaviour
     private float fireCountdown = 0f;
     
 
-    [Header("Use Laser")]
-    public bool useLaser = false;
-
-    public int damageOverTime = 30;
-    public float slowAmount = 0.5f;
-
-    public LineRenderer lineRenderer;
-    public ParticleSystem impactEffect;
-    public Light impactLight;
-
     [Header("Unity Setup Fields")]
 
     public string enemyTag = "Enemy";
@@ -37,44 +29,37 @@ public class Turret : MonoBehaviour
 
     public Transform firePoint;
 
+    protected List<GameObject> enemies;
+    protected List<GameObject> allies;
 
 
 
-   
+
+    private void Awake()
+    {
+        sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider.radius = range;
+        enemies = new List<GameObject>();
+        allies = new List<GameObject>();
+    }
+
 
 
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+       InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     void Update()
     {
         if (target == null)
         {
-            if (useLaser)
-            {
-                if (lineRenderer.enabled)
-                {
-                    lineRenderer.enabled = false;
-                    impactEffect.Stop();
-                    impactLight.enabled = false;
-                }
-            }
-
-
             return;
         }
-            
+
 
         LockOnTarget();
 
-        if (useLaser)
-        {
-            Laser();
-        }
-        else
-        {       
             if (fireCountdown <= 0f)
             {
                 Shoot();
@@ -82,38 +67,15 @@ public class Turret : MonoBehaviour
             }
 
             fireCountdown -= Time.deltaTime;
-        }
     }
 
 
-    void LockOnTarget()
+    protected void LockOnTarget()
     {
         Vector3 dir = (target.position - transform.position);
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-    }
-
-    void Laser()
-    {
-        targetEnemy.TakeDamage(damageOverTime * Time.deltaTime);
-        targetEnemy.Slow(slowAmount);
-
-        if (!lineRenderer.enabled)
-        {
-            lineRenderer.enabled = true;
-            impactEffect.Play();
-            impactLight.enabled = true;
-        }    
-
-        lineRenderer.SetPosition(0, firePoint.position);
-        lineRenderer.SetPosition(1, target.position);
-
-        Vector3 dir = firePoint.position - target.position;
-
-        impactEffect.transform.position = target.position + dir.normalized;
-
-        impactEffect.transform.rotation = Quaternion.LookRotation(dir);
     }
 
 
@@ -131,41 +93,85 @@ public class Turret : MonoBehaviour
 
     }
 
-    void UpdateTarget()
+
+
+    protected void UpdateTarget()
     {
-        /*
-        //my modification to the brackeys scripts that make the tower keep the focus 
-        //to the current ennemy if it's still in range (maybe i will have to add another modification
-        //to check if the ennemy is dead)
-        if (target != null && Vector3.Distance(transform.position, target.transform.position) < range)
-            return;
-            */
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+
+        for (int i = enemies.Count - 1; i >= 0; i--)
+        {
+            if (!enemies[i].activeSelf)
+            enemies.RemoveAt(i);
+        }
+
+        for (int i = allies.Count - 1; i >= 0; i--)
+        {
+            if (!allies[i].activeSelf)
+                allies.RemoveAt(i);
+        }
+
+
+        if (target != null)
+        {
+            if (!target.gameObject.activeSelf)
+            {
+                target = null;
+                targetEnemy = null;
+            }
+        }
+
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
-        
+
+     
+
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+
             if (distanceToEnemy < shortestDistance)
             {
                 shortestDistance = distanceToEnemy;
-                if (enemy.GetComponent<Enemy>().alignement != alignement)
-                {
-                    nearestEnemy = enemy;
-                }
-            }
+                nearestEnemy = enemy;
+            }   
         }
 
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
-            targetEnemy = nearestEnemy.GetComponent<Enemy>();
+            targetEnemy = nearestEnemy.GetComponent<IDamageable>();
         }
         else
         {
             target = null;
         }
+
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.GetComponent<IDamageable>() == null)
+            return;
+
+        if (collider.GetComponent<IDamageable>().GetAlignement() == null)
+        {
+            Debug.Log("Target dont have an alignement");
+            return;
+        }
+
+        if (collider.GetComponent<IDamageable>().GetAlignement() == alignement)
+            allies.Add(collider.gameObject);
+        else
+            enemies.Add(collider.gameObject);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (enemies.Contains(other.gameObject))
+            enemies.Remove(other.gameObject);
+
+        if (allies.Contains(other.gameObject))
+            allies.Remove(other.gameObject);
     }
 
     void OnDrawGizmosSelected()
@@ -173,4 +179,6 @@ public class Turret : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+  
 }

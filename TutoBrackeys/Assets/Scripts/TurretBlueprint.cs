@@ -10,7 +10,9 @@ public class TurretBlueprint {
 
     public GameObject upgradedPrefab;
     public int upgradeCost;
-	
+
+    public int constructionPoints;
+
     public int GetSellAmount()
     {
         return cost / 2;

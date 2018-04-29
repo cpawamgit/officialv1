@@ -1,11 +1,16 @@
 ﻿using UnityEngine.EventSystems;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Node : MonoBehaviour {
 
     public Color hoverColor;
     public Vector3 offset;
     public Color notEnoughMoneyColor;
+    public Transform spawnPointForPeones;
+    public GameObject peones;
+
+    public Transform positionTestForPeon;
 
     [HideInInspector]
     public GameObject turret;
@@ -42,29 +47,17 @@ public class Node : MonoBehaviour {
 
         PlayerStats.Instance.ChangeMoney(-blueprint.cost);
 
-        GameObject _turret = MyObjectPooler.Instance.SpawnFromPool(blueprint.prefab);
-        _turret.transform.position = GetBuildPosition();
-        _turret.transform.rotation = Quaternion.identity;
-        _turret.SetActive(true);
-
-        turret = _turret;
+        GameObject _peones = MyObjectPooler.Instance.SpawnFromPoolAt(peones, spawnPointForPeones.position, spawnPointForPeones.rotation);
+        _peones.GetComponent<Peons>().GoBuildATower(blueprint, GetBuildPosition(), this);
 
         turretBlueprint = blueprint;
-
-
-        GameObject effect = MyObjectPooler.Instance.SpawnFromPool(buildManager.buildEffect);
-        effect.transform.position = GetBuildPosition();
-        effect.transform.rotation = Quaternion.identity;
-        effect.SetActive(true);
-
-        Debug.Log("Turret build !");
     }
 
     public void UpgradeTurret()
     {
         if (PlayerStats.Instance.Money < turretBlueprint.upgradeCost)
         {
-            Debug.Log("Not enough money to upgrade !!!!");
+            Debug.Log("Not enough money to upgrade !!!");
             return;
         }
 

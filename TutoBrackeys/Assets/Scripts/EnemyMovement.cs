@@ -34,7 +34,7 @@ void Update()
             GetNextWaypoint();
         }
 
-        enemy.speed = enemy.startSpeed;
+        //enemy.speed = enemy.startSpeed;
     }
 
 
@@ -55,6 +55,6 @@ void Update()
     {
         PlayerStats.DecreaseLife();
         WaveSpawner.EnemiesAlive--;
-        Destroy(gameObject);
+        MyObjectPooler.Instance.ReturnToPool(gameObject);
     }
 }
