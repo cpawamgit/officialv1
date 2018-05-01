@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TutoBrackeys", "TutoBrackeys.csproj", "{4EA29C95-2E42-1070-52BE-7ED7983FA152}"
 EndProject
 Global
