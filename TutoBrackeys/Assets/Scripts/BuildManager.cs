@@ -8,6 +8,7 @@ public class BuildManager : MonoBehaviour {
     public GameObject buildEffect;
     public GameObject sellEffect;
 
+    #region Singleton
     void Awake()
     {
         if (Instance != null)
@@ -17,6 +18,7 @@ public class BuildManager : MonoBehaviour {
         }
         Instance = this;
     }
+    #endregion
 
 
     private TurretBlueprint turretToBuild;
@@ -27,7 +29,8 @@ public class BuildManager : MonoBehaviour {
 
     public NodeUI nodeUI;
 
-  
+
+
     public void SelectNode (Node node)
     {
         if (selectedNode == node)
@@ -35,6 +38,12 @@ public class BuildManager : MonoBehaviour {
             DeselectNode();
             return;
         }
+
+        //if (node.buildingDisable)
+        //{
+        //    nodeUI.SetTarget(node);
+        //    return;
+        //}
 
         selectedNode = node;
         turretToBuild = null;

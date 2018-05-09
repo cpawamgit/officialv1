@@ -16,11 +16,11 @@ public class Peons : MonoBehaviour, IDamageable
     private float constructedPoints;
     private TurretBlueprint blueprint;
     private Node nodeDestination;
-    
+    private bool backing;
     private int peonToDisable = 0;
     private float speed;
 
-
+    public Transform home;
     public List<GameObject> peons;
     private GameObject _buildingTower;// ajouter au blueprint
     public GameObject buildingTower;//  ajouter au blueprint
@@ -45,6 +45,8 @@ public class Peons : MonoBehaviour, IDamageable
         constructedPoints = 0f;
         peonActualLife = lifePerPeon;
         _buildingTower = null;
+        peonToDisable = 0;
+        backing = false;
 
         navMeshAgent.enabled = false;
         navMeshAgent.enabled = true;
@@ -82,19 +84,27 @@ public class Peons : MonoBehaviour, IDamageable
                 MyObjectPooler.Instance.ReturnToPool(_buildingTower);
                 GameObject turretBuild = MyObjectPooler.Instance.SpawnFromPoolAt(blueprint.prefab, buildPosition, Quaternion.identity);
                 MyObjectPooler.Instance.SpawnFromPoolAt(BuildManager.Instance.buildEffect, buildPosition, Quaternion.identity);
-
                 Debug.Log("Tower built");
-
                 building = false;
-                MyObjectPooler.Instance.ReturnToPool(gameObject);
-
                 nodeDestination.turret = turretBuild;
+                nodeDestination.EnableConstruction();
+
+                MyObjectPooler.Instance.ReturnToPool(gameObject);
             }
             else
             {
                 constructedPoints += constructionSpeed * peonsAlive * Time.deltaTime;
             }
 
+        }
+
+        if (backing)
+        {
+            if (navMeshAgent.remainingDistance <= Mathf.Epsilon)
+            {
+                PlayerStats.Instance.ChangeMoney(blueprint.cost);
+                MyObjectPooler.Instance.ReturnToPool(gameObject);
+            }
         }
     }
 
@@ -123,16 +133,20 @@ public class Peons : MonoBehaviour, IDamageable
         {
             peonsAlive -= 1;
             peonActualLife = lifePerPeon;
-            peons[peonToDisable].SetActive(false);
-            peonToDisable++;
+            
 
             if (peonsAlive <= 0)
             {
                 if (_buildingTower != null)
                     MyObjectPooler.Instance.ReturnToPool(_buildingTower);
 
+                nodeDestination.EnableConstruction();
                 MyObjectPooler.Instance.ReturnToPool(gameObject);
+                return;
             }
+
+            peons[peonToDisable].SetActive(false);
+            peonToDisable++;
         }
     }
 
@@ -165,6 +179,17 @@ public class Peons : MonoBehaviour, IDamageable
             effectDictionnary[effect].SetActive(true);
         else
             effectDictionnary[effect].SetActive(false);
+    }
+
+    public void CancelBuilding()
+    {
+        if (building)
+            return;
+
+        navMeshAgent.isStopped = false;
+        navMeshAgent.destination = home.position;
+        backing = true;
+        onTheWay = false;
     }
 
 }

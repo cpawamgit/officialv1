@@ -37,6 +37,8 @@ public class PlayerStats : MonoBehaviour
         money = startMoney;
         Lives = startLives;
         Rounds = 0;
+
+        InvokeRepeating("MoneyOnTime", 0, 1);
     }
 
 
@@ -67,5 +69,11 @@ public class PlayerStats : MonoBehaviour
         towersMenu.CheckMoney();
     }
 
-   
+    private void MoneyOnTime()
+    {
+        ChangeMoney(1);
+    }
+
+
+
 }

@@ -531,6 +531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifePerPeon: 40
+  home: {fileID: 4120078837457102, guid: 359e00f62d5376e468aa995a2cf8d0db, type: 2}
   peons:
   - {fileID: 1579795962894782}
   - {fileID: 1599423358587132}

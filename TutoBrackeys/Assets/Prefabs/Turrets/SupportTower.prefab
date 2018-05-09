@@ -267,8 +267,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149875437993688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.2, y: 0, z: 46.2}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: -56.83, y: 0.06, z: 46.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4784873697920368}
   - {fileID: 4856771609180418}
@@ -653,7 +653,7 @@ MonoBehaviour:
   firePoint: {fileID: 4259767869762020}
   scaleForGizmo: 0.8
   useOnSupportTower: 1
-  supportTower: {fileID: 0}
+  supportTower: {fileID: 114739477083261560}
   enemies: []
   allies: []
 --- !u!114 &114739477083261560

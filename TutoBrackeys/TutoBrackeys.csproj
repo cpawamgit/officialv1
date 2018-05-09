@@ -282,6 +282,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\__Photon\Billboard_Photon.cs" />
+    <Compile Include="Assets\__Photon\Bullet_Photon.cs" />
+    <Compile Include="Assets\__Photon\EnemySpawner_Photon.cs" />
+    <Compile Include="Assets\__Photon\Health_Photon.cs" />
+    <Compile Include="Assets\__Photon\PlayerMovement_Photon.cs" />
     <Compile Include="Assets\HeroMovement.cs" />
     <Compile Include="Assets\Scripts\AgentSelector.cs" />
     <Compile Include="Assets\Scripts\Alignement.cs" />

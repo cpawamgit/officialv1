@@ -7,10 +7,13 @@ public class Node : MonoBehaviour {
     public Color hoverColor;
     public Vector3 offset;
     public Color notEnoughMoneyColor;
+    public Color disableColor;
     public Transform spawnPointForPeones;
     public GameObject peones;
+    [HideInInspector]
+    public bool buildingDisable;
 
-    public Transform positionTestForPeon;
+
 
     [HideInInspector]
     public GameObject turret;
@@ -19,8 +22,10 @@ public class Node : MonoBehaviour {
     [HideInInspector]
     public bool isUpgraded = false;
 
+    private GameObject _peones;
     private Renderer rend;
     private Color startColor;
+    private Color actualColor;
 
     BuildManager buildManager;
 
@@ -29,6 +34,7 @@ public class Node : MonoBehaviour {
         rend = GetComponent<Renderer>();
         startColor = rend.material.color;
         buildManager = BuildManager.Instance;
+        actualColor = startColor;
     }
 
     public Vector3 GetBuildPosition()
@@ -47,10 +53,10 @@ public class Node : MonoBehaviour {
 
         PlayerStats.Instance.ChangeMoney(-blueprint.cost);
 
-        GameObject _peones = MyObjectPooler.Instance.SpawnFromPoolAt(peones, spawnPointForPeones.position, spawnPointForPeones.rotation);
+        _peones = MyObjectPooler.Instance.SpawnFromPoolAt(peones, spawnPointForPeones.position, spawnPointForPeones.rotation);
         _peones.GetComponent<Peons>().GoBuildATower(blueprint, GetBuildPosition(), this);
 
-        //desactiver la construction tant que les peons sont en vie, si les peons crèvent réactiver la construction
+        DisableConstruction();
 
         turretBlueprint = blueprint;
     }
@@ -118,6 +124,11 @@ public class Node : MonoBehaviour {
         if (!buildManager.CanBuild)
             return;
 
+        if (buildingDisable)
+        {
+            buildManager.SelectNode(this);
+            return;
+        }
 
         BuildTurret(buildManager.GetTurretToBuild());
     }
@@ -130,17 +141,40 @@ public class Node : MonoBehaviour {
         if (!buildManager.CanBuild)
             return;
 
-        if (buildManager.HasMoney)
-            rend.material.color = hoverColor;
-        else
-            rend.material.color = notEnoughMoneyColor;
+        if (!buildingDisable)
+        {
+            if (buildManager.HasMoney)
+                rend.material.color = hoverColor;
+            else
+                rend.material.color = notEnoughMoneyColor;
+        }
+       
     }
 
     void OnMouseExit()
     {
-        rend.material.color = startColor;
+        rend.material.color = actualColor;
     }
 
-    
+    void DisableConstruction()
+    {
+        rend.material.color = disableColor;
+        actualColor = disableColor;
+        buildingDisable = true;
+    }
+
+    public void EnableConstruction()
+    {
+        rend.material.color = startColor;
+        actualColor = startColor;
+        buildingDisable = false;
+    }
        
+    public void CancelBuilding()
+    {
+        EnableConstruction();
+
+        _peones.GetComponent<Peons>().CancelBuilding();
+    }
+
 }

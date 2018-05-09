@@ -1,7 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/AgentSelect.unity
+- path: Assets/Scenes/MapRomainScene.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/Scenes/Level01.unity
-  isLoaded: 0
-  isActive: 0

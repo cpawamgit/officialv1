@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class NodeUI : MonoBehaviour
 {
-    public GameObject UI;
+    public GameObject sellAndUpgrade_Canvas;
+    public GameObject cancel_Canvas;
     public Text upgradeCost;
     public Text upgradeText;
     public Button upgradeButton;
@@ -16,12 +17,16 @@ public class NodeUI : MonoBehaviour
         target = _target;
         transform.position = target.GetBuildPosition();
 
+        if (target.buildingDisable)
+        {
+            cancel_Canvas.SetActive(true);
+            return;
+        }
 
         if (!target.isUpgraded)
         {
 
             upgradeCost.text = target.turretBlueprint.upgradeCost + "€";
-
 
             upgradeButton.interactable = true;
             upgradeText.enabled = true;
@@ -36,12 +41,13 @@ public class NodeUI : MonoBehaviour
 
         sellAmount.text = target.turretBlueprint.GetSellAmount() + "€";
 
-        UI.SetActive(true);
+        sellAndUpgrade_Canvas.SetActive(true);
     }
 	
     public void Hide()
     {
-        UI.SetActive(false);
+        sellAndUpgrade_Canvas.SetActive(false);
+        cancel_Canvas.SetActive(false);
     }
 
     public void Upgrade()
@@ -53,6 +59,12 @@ public class NodeUI : MonoBehaviour
     public void Sell()
     {
         target.SellTurret();
+        BuildManager.Instance.DeselectNode();
+    }
+
+    public void CancelBuilding()
+    {
+        target.CancelBuilding();
         BuildManager.Instance.DeselectNode();
     }
 }

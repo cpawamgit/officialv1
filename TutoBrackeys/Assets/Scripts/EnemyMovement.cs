@@ -22,14 +22,14 @@ public class EnemyMovement : MonoBehaviour
 
         wavePointIndex = 0;
 
-}
+    }
 
 void Update()
     {
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * enemy.speed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+        if (Vector3.Distance(transform.position, target.position) <= 1f)
         {
             GetNextWaypoint();
         }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4139022905938980}
   - component: {fileID: 33002452401080512}
   - component: {fileID: 23248941508312086}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemyHealthBar_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4501986061722404}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BGAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4451400829715462}
   - component: {fileID: 108557545259279872}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SpeedEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 4467345151865804}
   - component: {fileID: 33066423759950686}
   - component: {fileID: 23706251023945778}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemyHealthBG_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4866113355382850}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HBAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4347523925572934}
   - component: {fileID: 114711852704468588}
   - component: {fileID: 135520090634877656}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Targetter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4574380861704072}
   - component: {fileID: 114296034469669522}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnnemyHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 114665901113741128}
   - component: {fileID: 54066586058399482}
   - component: {fileID: 136839564729658720}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy_Simple
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4223679984156968}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PartToRotateAndFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4775978771577822}
   - component: {fileID: 108861417687645176}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HealingEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,10 +446,10 @@ Rigidbody:
   m_GameObject: {fileID: 1804851671011920}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_Drag: 5
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -594,6 +594,8 @@ MonoBehaviour:
   turnSpeed: 10
   firePoint: {fileID: 4223679984156968}
   scaleForGizmo: 2
+  useOnSupportTower: 0
+  supportTower: {fileID: 0}
   enemies: []
   allies: []
 --- !u!135 &135520090634877656

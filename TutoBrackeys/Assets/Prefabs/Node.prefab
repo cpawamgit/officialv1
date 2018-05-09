@@ -110,4 +110,15 @@ MonoBehaviour:
   hoverColor: {r: 0.43382353, g: 0.43382353, b: 0.43382353, a: 0}
   offset: {x: 0, y: 0.5, z: 0}
   notEnoughMoneyColor: {r: 1, g: 0, b: 0, a: 0}
+  disableColor: {r: 0, g: 0.27910748, b: 0.9411765, a: 0}
+  spawnPointForPeones: {fileID: 0}
+  peones: {fileID: 0}
+  positionTestForPeon: {fileID: 0}
   turret: {fileID: 0}
+  turretBlueprint:
+    prefab: {fileID: 0}
+    cost: 0
+    upgradedPrefab: {fileID: 0}
+    upgradeCost: 0
+    constructionPoints: 0
+  isUpgraded: 0
