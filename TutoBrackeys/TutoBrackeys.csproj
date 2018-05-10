@@ -288,6 +288,8 @@
     <Compile Include="Assets\__Photon\Health_Photon.cs" />
     <Compile Include="Assets\__Photon\PlayerMovement_Photon.cs" />
     <Compile Include="Assets\HeroMovement.cs" />
+    <Compile Include="Assets\Matchmaker.cs" />
+    <Compile Include="Assets\NetworkHUD.cs" />
     <Compile Include="Assets\Scripts\AgentSelector.cs" />
     <Compile Include="Assets\Scripts\Alignement.cs" />
     <Compile Include="Assets\Scripts\BuildManager.cs" />

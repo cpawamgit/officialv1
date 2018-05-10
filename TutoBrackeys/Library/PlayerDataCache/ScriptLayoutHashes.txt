@@ -1,10 +1,6 @@
 WindowsStandalone
 SceneListBegin?
-Assets/Scenes/MainMenu.unity
-Assets/Scenes/LevelSelect.unity
 Assets/Scenes/AgentSelect.unity
-Assets/Scenes/Level01.unity
-Assets/Scenes/Level02.unity
 Assets/Scenes/MapRomainScene.unity
 SceneListEnd?
 c9489257729e89cd214ec5aa16726b80 Assembly-CSharp.dll:.WaveSpawner
@@ -185,3 +181,5 @@ fae67874030467fd88dc797304987dce Assembly-CSharp.dll:.StartButtonSelectUnitScene
 c8ecc1c958f759b5d351184563038f73 Assembly-CSharp.dll:.GameOver
 c9bc2d3903a9cbc4ec709f80ae907945 Assembly-CSharp.dll:.CompleteLevel
 5bc6a83d24cbf9595b67b43af32b6dd1 Assembly-CSharp.dll:.Enemy
+1df234784afa2cbe0613283a35c66908 Assembly-CSharp.dll:.Matchmaker
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.NetworkHUD
