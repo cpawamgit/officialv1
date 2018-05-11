@@ -19,9 +19,9 @@ public class GameMaster : NetworkBehaviour
 
     public UIPFCController UIPFCController;
 
-    private List<PlayerConnection> playersConnected;
+    private List<PlayerConnection> connectedPlayers;
     public List<PlayerConnection> m_PlayersConnected
-    { get { return playersConnected; } }
+    { get { return connectedPlayers; } }
 
     private PlayerConnection localPlayer;
     public PlayerConnection m_LocalPlayer
@@ -37,29 +37,29 @@ public class GameMaster : NetworkBehaviour
     void Start()
     {
         DontDestroyOnLoad(Instance.gameObject);
-
-       
     }
 
-    [ClientRpc]
-    public void RpcSetPlayersConnectedList(List<PlayerConnection> playersConnectedList)
+
+    public void SetPlayersConnectedList(List<PlayerConnection> playersConnectedList)
     {
-        //Debug.Log("SetPlayersConnectedList");
+        Debug.Log("SetPlayersConnectedList");
 
-        //playersConnected = playersConnectedList;
+        connectedPlayers = playersConnectedList;
 
-        //for (int i = 0; i < playersConnected.Count; i++)
-        //{
-        //    if (playersConnected[i].hasAuthority)
-        //    {
-        //        localPlayer = playersConnected[i];
-        //    }
-        //    else
-        //    {
-        //        otherPlayer = playersConnected[i];
-        //    }
-        //}
+        for (int i = 0; i < connectedPlayers.Count; i++)
+        {
+            if (connectedPlayers[i].hasAuthority)
+            {
+                localPlayer = connectedPlayers[i];
+                Debug.Log("localPlayer = " + localPlayer);
+            }
+            else
+            {
+                otherPlayer = connectedPlayers[i];
+                Debug.Log("otherPlayer = " + otherPlayer);
+            }
+        }
 
-        //UIPFCController.SetUINames();
+        UIPFCController.SetUINames();
     }
 }

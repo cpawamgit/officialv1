@@ -52,7 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba5dd48762cfa245bfebd16235021a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIPFCController: {fileID: 0}
+  UIPFCController: {fileID: 114932257520554192, guid: 0bcb64789ee9c3740be897b1d5536aa0,
+    type: 2}
 --- !u!114 &114439428312438294
 MonoBehaviour:
   m_ObjectHideFlags: 1

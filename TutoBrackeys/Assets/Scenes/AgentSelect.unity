@@ -316,7 +316,6 @@ GameObject:
   - component: {fileID: 95563202}
   - component: {fileID: 95563201}
   - component: {fileID: 95563200}
-  - component: {fileID: 95563203}
   m_Layer: 5
   m_Name: StartGameButton
   m_TagString: Untagged
@@ -382,7 +381,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 382792705}
+      - m_Target: {fileID: 1319191996}
         m_MethodName: FindInternetMatch
         m_Mode: 1
         m_Arguments:
@@ -428,18 +427,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 95563198}
---- !u!114 &95563203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 95563198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3854ca6d25e9532478c22d8f11be6da6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneFader: {fileID: 985624030}
 --- !u!1 &110573596
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,46 +657,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &382792704
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 382792706}
-  - component: {fileID: 382792705}
-  m_Layer: 0
-  m_Name: MatchMaker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &382792705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 382792704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102ddf658c7f0af40877540b112a68e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &382792706
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 382792704}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 639.7631, y: 173.2246, z: 13.287929}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &512559384
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,12 +1369,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &985624030 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114115790413206294, guid: 26fc8e77065991743bbe4e4045b50535,
-    type: 2}
-  m_PrefabInternal: {fileID: 775821685}
-  m_Script: {fileID: 11500000, guid: 15a180b29f58d19449f8d6b6f73ead8e, type: 3}
 --- !u!1001 &1000493716
 Prefab:
   m_ObjectHideFlags: 0
@@ -1524,6 +1465,7 @@ GameObject:
   - component: {fileID: 1319191999}
   - component: {fileID: 1319191997}
   - component: {fileID: 1319191998}
+  - component: {fileID: 1319191996}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1531,6 +1473,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1319191996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1319191995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102ddf658c7f0af40877540b112a68e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1319191997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1626,10 +1579,13 @@ MonoBehaviour:
   m_MatchHost: mm.unet.unity3d.com
   m_MatchPort: 443
   matchName: default
-  matchSize: 4
+  matchSize: 2
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   sceneToLoad: PFCscene
+  m_NetworkPlayerPrefab: {fileID: 1485848924065796, guid: f1fb445723ac5134f9da64e4d4b355b3,
+    type: 2}
+  m_MultiplayerMaxPlayers: 2
 --- !u!4 &1319191999
 Transform:
   m_ObjectHideFlags: 0

@@ -289,7 +289,6 @@
     <Compile Include="Assets\__Photon\PlayerMovement_Photon.cs" />
     <Compile Include="Assets\HeroMovement.cs" />
     <Compile Include="Assets\PFC\GameMaster.cs" />
-    <Compile Include="Assets\PFC\PlayerController.cs" />
     <Compile Include="Assets\PFC\Test.cs" />
     <Compile Include="Assets\PFC\UpdateScore.cs" />
     <Compile Include="Assets\Scripts\AgentSelector.cs" />

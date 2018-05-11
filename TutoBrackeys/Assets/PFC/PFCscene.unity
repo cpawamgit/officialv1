@@ -213,12 +213,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0bcb64789ee9c3740be897b1d5536aa0, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &174932362 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114932257520554192, guid: 0bcb64789ee9c3740be897b1d5536aa0,
-    type: 2}
-  m_PrefabInternal: {fileID: 174932361}
-  m_Script: {fileID: 11500000, guid: 5d1b25872131c654c85d4cd4bc0e65b4, type: 3}
 --- !u!1 &346234117
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,11 +437,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114244455637460772, guid: 69661a38856d52e46b5c9491b68d5773,
-        type: 2}
-      propertyPath: UIPFCController
-      value: 
-      objectReference: {fileID: 174932362}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69661a38856d52e46b5c9491b68d5773, type: 2}
   m_IsPrefabParent: 0

@@ -19,19 +19,11 @@ public class UIPFCController : NetworkBehaviour {
 
 
 
-    void Start ()
-    {
-        gameMaster = GameMaster.Instance;
-    }
 
-
+    
     public void SetUINames()
     {
-        Debug.Log(" playerName[0].text = " + playerName[0].text);
-        Debug.Log(" gameMaster.m_LocalPlayer.playerID = " + gameMaster.m_LocalPlayer.playerID);
-
-
-
+        gameMaster = GameMaster.Instance;
 
         playerName[0].text = "Player : " + gameMaster.m_LocalPlayer.playerID.ToString();
         playerName[1].text = "Player : " + gameMaster.m_OtherPlayer.playerID.ToString();

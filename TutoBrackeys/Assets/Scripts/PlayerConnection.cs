@@ -24,10 +24,7 @@ public class PlayerConnection : NetworkBehaviour
 
 
 
-    private void Update()
-    {
-        Debug.Log("playerID = " + playerID, this);
-    }
+ 
 
     private void Start()
     {
@@ -60,4 +57,13 @@ public class PlayerConnection : NetworkBehaviour
         //sceneFader.FadeTo( );
     }
 
+
+    [Client]
+    public void OnEnterGameScene()
+    {
+        if (!hasAuthority)
+            return;
+        
+        // fait des bails quand on arrive dans une new scene
+    }
 }
