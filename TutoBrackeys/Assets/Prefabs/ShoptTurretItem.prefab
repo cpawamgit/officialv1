@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114407281117980940}
   - component: {fileID: 114399450262119146}
   m_Layer: 5
-  m_Name: ShoptTurrentItem
+  m_Name: ShoptTurretItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,6 +2,7 @@ WindowsStandalone
 SceneListBegin?
 Assets/Scenes/AgentSelect.unity
 Assets/Scenes/MapRomainScene.unity
+Assets/PFC/PFCscene.unity
 SceneListEnd?
 c9489257729e89cd214ec5aa16726b80 Assembly-CSharp.dll:.WaveSpawner
 e29c2077a98d84777fac0faf752e7cec Assembly-CSharp.dll:.RoundsSurvived
@@ -128,6 +129,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 dc013044d4e78213ca39948a1940783a Assembly-CSharp.dll:.MoneyUI
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Matchmaker
 6041315c9272243f3985eecf89e8d048 Assembly-CSharp.dll:.PlayerStats
 9ac7f3eb96f64eb168d60eca7da28d6b Assembly-CSharp.dll:.Targetter
 e3f7e7211810443fd15d3f37a08b46ce Assembly-CSharp.dll:.LivesUI
@@ -181,5 +183,10 @@ fae67874030467fd88dc797304987dce Assembly-CSharp.dll:.StartButtonSelectUnitScene
 c8ecc1c958f759b5d351184563038f73 Assembly-CSharp.dll:.GameOver
 c9bc2d3903a9cbc4ec709f80ae907945 Assembly-CSharp.dll:.CompleteLevel
 5bc6a83d24cbf9595b67b43af32b6dd1 Assembly-CSharp.dll:.Enemy
-1df234784afa2cbe0613283a35c66908 Assembly-CSharp.dll:.Matchmaker
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.NetworkHUD
+f351557766b2a8777379e611955680c9 Assembly-CSharp.dll:.PlayerConnection
+b1f0bd763525b7d4beaa7ec5e65feec2 Assembly-CSharp.dll:.NetworkManager
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PlayerController
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Test
+4eedd55101c9f1a46ba98a166960ad95 Assembly-CSharp.dll:.UpdateScore
+8d5a9d0019e00bfb9ea203e739f075fd Assembly-CSharp.dll:.GameMaster
+6f31bd5bbf5eed6cf38dfffa1f772c21 Assembly-CSharp.dll:.UIPFCController
