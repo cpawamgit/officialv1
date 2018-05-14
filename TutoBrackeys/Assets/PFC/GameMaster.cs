@@ -19,17 +19,17 @@ public class GameMaster : NetworkBehaviour
 
     public UIPFCController UIPFCController;
 
-    private List<PlayerConnection> connectedPlayers;
-    public List<PlayerConnection> m_PlayersConnected
+    private List<NetworkPlayer> connectedPlayers;
+    public List<NetworkPlayer> m_PlayersConnected
     { get { return connectedPlayers; } }
 
-    private PlayerConnection localPlayer;
-    public PlayerConnection m_LocalPlayer
+    private NetworkPlayer localPlayer;
+    public NetworkPlayer m_LocalPlayer
     { get { return localPlayer; } }
 
 
-    private PlayerConnection otherPlayer;
-    public PlayerConnection m_OtherPlayer
+    private NetworkPlayer otherPlayer;
+    public NetworkPlayer m_OtherPlayer
     { get { return otherPlayer; } }
 
 
@@ -40,7 +40,7 @@ public class GameMaster : NetworkBehaviour
     }
 
 
-    public void SetPlayersConnectedList(List<PlayerConnection> playersConnectedList)
+    public void SetPlayersConnectedList(List<NetworkPlayer> playersConnectedList)
     {
         Debug.Log("SetPlayersConnectedList");
 
@@ -60,6 +60,6 @@ public class GameMaster : NetworkBehaviour
             }
         }
 
-        UIPFCController.SetUINames();
+        UIPFCController.SetUI();
     }
 }

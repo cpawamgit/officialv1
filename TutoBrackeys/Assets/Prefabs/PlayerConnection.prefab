@@ -84,5 +84,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e91a98d7bd20b42828fdbdfc433ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PFCchoice: 0
+  Score: 0
+  m_PFCPlayerUI: {fileID: 1679492329173134, guid: 1b91381fc9350d743bf7dcc5c2d1f921,
+    type: 2}
+  m_hero: {fileID: 0}
   sceneFader: {fileID: 114115790413206294, guid: 26fc8e77065991743bbe4e4045b50535,
     type: 2}

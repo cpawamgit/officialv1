@@ -732,7 +732,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 937092295}
   m_HandleRect: {fileID: 937092294}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1066,6 +1066,11 @@ Prefab:
         type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114115790413206294, guid: 26fc8e77065991743bbe4e4045b50535,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 26fc8e77065991743bbe4e4045b50535, type: 2}

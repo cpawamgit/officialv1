@@ -2,7 +2,7 @@ WindowsStandalone
 SceneListBegin?
 Assets/Scenes/AgentSelect.unity
 Assets/Scenes/MapRomainScene.unity
-Assets/PFC/PFCscene.unity
+Assets/Scenes/PFCscene.unity
 SceneListEnd?
 c9489257729e89cd214ec5aa16726b80 Assembly-CSharp.dll:.WaveSpawner
 e29c2077a98d84777fac0faf752e7cec Assembly-CSharp.dll:.RoundsSurvived
@@ -90,7 +90,6 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 1d3609efb7202e015c37d8ae778a38cb Assembly-CSharp.dll:.Node
 97ad319f5133948b2a040eb8c0c4a688 Assembly-CSharp.dll:.SceneFader
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Test
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 dbc29a6f2739d277c10da432d73adb6d UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -144,7 +143,7 @@ e3f7e7211810443fd15d3f37a08b46ce Assembly-CSharp.dll:.LivesUI
 c7f31aaa4a65b35c67b87594008416ac Assembly-CSharp.dll:.Peons
 8d5a9d0019e00bfb9ea203e739f075fd Assembly-CSharp.dll:.GameMaster
 57cf4d6da5bedfd46960b2eb4ae64778 Assembly-CSharp.dll:.EnemySpawner_Photon
-f351557766b2a8777379e611955680c9 Assembly-CSharp.dll:.PlayerConnection
+eb752390197bc82d0b14acd3e9b56994 Assembly-CSharp.dll:.NetworkPlayer
 61dc4bad9ec31eaafdb507c012e5d282 Assembly-CSharp.dll:.Bullet
 1f425462cf55a796ad62933ef25808ae Assembly-CSharp.dll:.CameraController
 c4724b5b0ac94b50ce2b332b364ddf65 Assembly-CSharp.dll:.TowersMenu
@@ -182,7 +181,6 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 4189e212e0c8924096eaa88479bc5aac Assembly-CSharp.dll:.Alignement
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 141dfe4c10ccbec22a6029f568ff6b93 Assembly-CSharp.dll:.NodeUI
-4eedd55101c9f1a46ba98a166960ad95 Assembly-CSharp.dll:.UpdateScore
 e207b6e42a849b1945347e9cf88ff6e4 Assembly-CSharp.dll:.MainMenu
 fae67874030467fd88dc797304987dce Assembly-CSharp.dll:.StartButtonSelectUnitScene
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.HeroMovement

@@ -11,7 +11,7 @@ public class UIPFCController : NetworkBehaviour {
 
     public List<Button> buttonsList = new List<Button>();
 
-
+    
     public List<Text> playerName = new List<Text>();
     public List<Text> playerScore = new List<Text>();
 
@@ -20,14 +20,19 @@ public class UIPFCController : NetworkBehaviour {
 
 
 
-    
-    public void SetUINames()
+
+    public void SetUI()
     {
         gameMaster = GameMaster.Instance;
 
-        playerName[0].text = "Player : " + gameMaster.m_LocalPlayer.playerID.ToString();
-        playerName[1].text = "Player : " + gameMaster.m_OtherPlayer.playerID.ToString();
+        Debug.Log("SetUI");
 
+
+        playerName[0].text = "Player " + gameMaster.m_LocalPlayer.playerID.ToString();
+        playerName[1].text = "Player " + gameMaster.m_OtherPlayer.playerID.ToString();
+
+        playerScore[0].text = "0";
+        playerScore[1].text = "0";
     }
 
 

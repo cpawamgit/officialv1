@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/PFC/PFCscene.unity
+- path: Assets/Scenes/PFCscene.unity
   isLoaded: 0
   isActive: 0
 - path: Assets/Scenes/AgentSelect.unity

@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -282,6 +284,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PFCPlayer.cs" />
     <Compile Include="Assets\__Photon\Billboard_Photon.cs" />
     <Compile Include="Assets\__Photon\Bullet_Photon.cs" />
     <Compile Include="Assets\__Photon\EnemySpawner_Photon.cs" />
@@ -289,8 +292,6 @@
     <Compile Include="Assets\__Photon\PlayerMovement_Photon.cs" />
     <Compile Include="Assets\HeroMovement.cs" />
     <Compile Include="Assets\PFC\GameMaster.cs" />
-    <Compile Include="Assets\PFC\Test.cs" />
-    <Compile Include="Assets\PFC\UpdateScore.cs" />
     <Compile Include="Assets\Scripts\AgentSelector.cs" />
     <Compile Include="Assets\Scripts\Alignement.cs" />
     <Compile Include="Assets\Scripts\BuildManager.cs" />
@@ -313,11 +314,11 @@
     <Compile Include="Assets\Scripts\MoneyUI.cs" />
     <Compile Include="Assets\Scripts\MyObjectPooler.cs" />
     <Compile Include="Assets\Scripts\NetworkManager.cs" />
+    <Compile Include="Assets\Scripts\NetworkPlayer.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\NodeUI.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Peons.cs" />
-    <Compile Include="Assets\Scripts\PlayerConnection.cs" />
     <Compile Include="Assets\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\RoundsSurvived.cs" />
     <Compile Include="Assets\Scripts\SceneFader.cs" />
@@ -328,11 +329,11 @@
     <Compile Include="Assets\Scripts\Towers.cs" />
     <Compile Include="Assets\Scripts\TowersMenu.cs" />
     <Compile Include="Assets\Scripts\TurretBlueprint.cs" />
+    <Compile Include="Assets\Scripts\UIPFCController.cs" />
     <Compile Include="Assets\Scripts\UnitesMenu.cs" />
     <Compile Include="Assets\Scripts\Wave.cs" />
     <Compile Include="Assets\Scripts\WaveSpawner.cs" />
     <Compile Include="Assets\Scripts\Waypoints.cs" />
-    <Compile Include="Assets\UIPFCController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\LICENSE.txt" />

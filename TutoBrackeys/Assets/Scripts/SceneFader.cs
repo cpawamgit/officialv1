@@ -8,6 +8,20 @@ public class SceneFader : MonoBehaviour
     public Image image;
     public AnimationCurve curve;
 
+    public static SceneFader Instance;
+
+    #region Singleton
+    private void Awake()
+    {
+        if (Instance != null)
+            Destroy(this);
+        else
+        {
+            Instance = this;
+        }
+    }
+    #endregion
+
     private void Start()
     {
         StartCoroutine(FadeIn());
@@ -45,7 +59,7 @@ public class SceneFader : MonoBehaviour
             yield return 0; //wait a frame
         }
 
-        SceneManager.LoadScene(scene);
+        NetworkManager.Instance.ServerChangeScene(scene);
     }
 
 
