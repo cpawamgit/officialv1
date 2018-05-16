@@ -34,10 +34,14 @@ public class GameMaster : NetworkBehaviour
 
 
 
+
+
     void Start()
     {
         DontDestroyOnLoad(Instance.gameObject);
     }
+
+   
 
 
     public void SetPlayersConnectedList(List<NetworkPlayer> playersConnectedList)
@@ -60,6 +64,6 @@ public class GameMaster : NetworkBehaviour
             }
         }
 
-        UIPFCController.SetUI();
+        //UIPFCController.SetUI();
     }
 }

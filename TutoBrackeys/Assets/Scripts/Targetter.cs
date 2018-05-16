@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Targetter : MonoBehaviour
 {
+    public event Action<GameObject> targetOutOfRange;
+
+
     [HideInInspector]
     public Transform target;
+    [HideInInspector]
     public IDamageable targetEnemy;
     private SphereCollider sphereCollider;
 
@@ -23,8 +28,6 @@ public class Targetter : MonoBehaviour
     public float turnSpeed = 10f;
     public Transform firePoint;
     public float scaleForGizmo;
-    public bool useOnSupportTower;
-    public SupportTower supportTower;
 
     [HideInInspector]
     public List<GameObject> enemies;
@@ -49,6 +52,10 @@ public class Targetter : MonoBehaviour
     private void OnDisable()
     {
         CancelInvoke("UpdateTarget");
+        enemies.Clear();
+        allies.Clear();
+        target = null;
+        targetEnemy = null;
     }
 
     private void UpdateTarget()
@@ -135,9 +142,9 @@ public class Targetter : MonoBehaviour
 
         if (collider.GetComponent<IDamageable>().GetAlignement() == null)
         {
+            Debug.Log("Target dont have an alignement.");
             return;
         }
-
 
         if (collider.GetComponent<IDamageable>().GetAlignement() == alignement)
             allies.Add(collider.gameObject);
@@ -147,10 +154,12 @@ public class Targetter : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (useOnSupportTower)
-        {
-            supportTower.LosingTarget(other);
-        }
+        if (other.GetComponent<IDamageable>() == null)
+            return;
+
+        if (targetOutOfRange != null)
+            targetOutOfRange(other.gameObject);
+       
 
         if (enemies.Contains(other.gameObject))
             enemies.Remove(other.gameObject);
