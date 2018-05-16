@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(Unite))]
 public class EnemyMovement : MonoBehaviour
 {
 
@@ -11,12 +11,12 @@ public class EnemyMovement : MonoBehaviour
     private int wavePointIndex = 0;
  
 
-    private Enemy enemy;
+    private Unite enemy;
 
 
     void OnEnable()
     {
-        enemy = GetComponent<Enemy>();
+        enemy = GetComponent<Unite>();
 
         target = Waypoints.points[0];
 

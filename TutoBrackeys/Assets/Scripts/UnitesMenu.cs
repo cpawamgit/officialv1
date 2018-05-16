@@ -21,9 +21,9 @@ public class UnitesMenu : MonoBehaviour
 
         for (int i = 0; i < AgentSelector.Instance.selectedAgents.Count; i++)
         {
-            agentButtonsImageList[i].sprite = AgentSelector.Instance.selectedAgents[i].GetComponent<Enemy>().image;
-            CDList.Add(AgentSelector.Instance.selectedAgents[i].GetComponent<Enemy>().CDBetweenSpawns);
-            priceList.Add(AgentSelector.Instance.selectedAgents[i].GetComponent<Enemy>().price);
+            agentButtonsImageList[i].sprite = AgentSelector.Instance.selectedAgents[i].GetComponent<Unite>().image;
+            CDList.Add(AgentSelector.Instance.selectedAgents[i].GetComponent<Unite>().CDBetweenSpawns);
+            priceList.Add(AgentSelector.Instance.selectedAgents[i].GetComponent<Unite>().price);
             onCDList.Add(false);
         }
 
@@ -44,7 +44,7 @@ public class UnitesMenu : MonoBehaviour
                 if (CDList[i] <= 0)
                 {
                     onCDList[i] = false;
-                    CDList[i] = AgentSelector.Instance.selectedAgents[i].GetComponent<Enemy>().CDBetweenSpawns;
+                    CDList[i] = AgentSelector.Instance.selectedAgents[i].GetComponent<Unite>().CDBetweenSpawns;
                     agentButtonsTextsList[i].text = null;
                     if (PlayerStats.Instance.Money > priceList[i])
                     {
