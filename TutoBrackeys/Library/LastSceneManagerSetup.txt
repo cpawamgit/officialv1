@@ -2,6 +2,6 @@ sceneSetups:
 - path: Assets/Scenes/AgentSelect.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/Scenes/Level01.unity
+- path: Assets/Scenes/PFCscene.unity
   isLoaded: 0
   isActive: 0
