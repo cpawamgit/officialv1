@@ -33,12 +33,14 @@ public class UIPFCController : MonoBehaviour {
 
     public List<Button> buttonsList = new List<Button>();
     public List<Text> playerName = new List<Text>();
-    public List<Text> playerScore = new List<Text>(); 
-      
-  
+    public List<Text> playerScore = new List<Text>();
+    public List<GameObject> animImageP1 = new List<GameObject>();
+    public List<GameObject> animImageP2 = new List<GameObject>();
+    public GameObject buttons;
+    public GameObject winAnim;
+    public GameObject looseAnim;
 
-    [SerializeField]
-    protected RectTransform panel;
+
 
     private HeroNetworkPlayer localPlayer;
     public HeroNetworkPlayer m_localPlayer
@@ -93,6 +95,8 @@ public class UIPFCController : MonoBehaviour {
 
 
 
+
+
     public void OnClickButton(int choice)// 1 = rock, 2 = paper, 3 = scissors
     {
         localPlayer.GetPFCChoice(choice);
@@ -113,4 +117,41 @@ public class UIPFCController : MonoBehaviour {
                 buttonsList[i].interactable = true;
         }
     }
+
+
+    public void PFCWinAnim(int p1Choice, int p2Choice, int winner)
+    {
+        Animator anim = GetComponent<Animator>();
+
+        Debug.Log("PFCWinAnim");
+
+        buttons.SetActive(false);
+
+        Debug.Log("p1Choice -1 = " + (p1Choice - 1));
+        Debug.Log("p2Choice -1 = " + (p2Choice - 1));
+        Debug.Log("animImageP1[p1Choice -1] = " + (animImageP1[p1Choice - 1]));
+        Debug.Log("animImageP2[p2Choice -1] = " + (animImageP2[p2Choice - 1]));
+
+        animImageP1[p1Choice -1].SetActive(true);
+        animImageP2[p2Choice -1].SetActive(true);
+
+        anim.Play("PFCAnim");
+
+        if (winner == -1)
+        {
+            Debug.Log("Draw anim");
+        }
+        else if (winner == localPlayer.playerID)
+        {
+            winAnim.SetActive(true);
+            anim.SetTrigger("win");
+        }
+        else 
+        {
+            looseAnim.SetActive(true);
+            anim.SetTrigger("loose");
+        }
+
+    }
+
 }

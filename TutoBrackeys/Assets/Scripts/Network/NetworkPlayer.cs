@@ -29,6 +29,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     public SceneFader sceneFader;
 
+    private int winner;
 
 
   
@@ -229,7 +230,7 @@ public class NetworkPlayer : NetworkBehaviour
         Debug.Log("CompareChoices");
         int localChoice = PFCChoice;
         int otherChoice = m_NetManager.connectedPlayers[1].PFCChoice;
-
+        winner = -1;
 
 
         if (localChoice == otherChoice)
@@ -243,10 +244,12 @@ public class NetworkPlayer : NetworkBehaviour
                 if (otherChoice == 2)
                 {
                     m_NetManager.connectedPlayers[1].PFCScore++;
+                    winner = 1;
                 }
                 if (otherChoice == 3)
                 {
                     PFCScore++;
+                    winner = 0;
                 }
                 break;
 
@@ -254,10 +257,12 @@ public class NetworkPlayer : NetworkBehaviour
                 if (otherChoice == 1)
                 {
                     PFCScore++;
+                    winner = 0;
                 }
                 if (otherChoice == 3)
                 {
                     m_NetManager.connectedPlayers[1].PFCScore++;
+                    winner = 1;
                 }
                 break;
 
@@ -265,12 +270,23 @@ public class NetworkPlayer : NetworkBehaviour
                 if (otherChoice == 1)
                 {
                     m_NetManager.connectedPlayers[1].PFCScore++;
+                    winner = 1;
                 }
                 if (otherChoice == 2)
                 {
                     PFCScore++;
+                    winner = 0;
                 }
                 break;
         }
+        RpcLaunchPFCAnim(localChoice, otherChoice, winner);
     }
+
+    [ClientRpc]
+    private void RpcLaunchPFCAnim(int p1Choice, int p2Choice, int winner)
+    {
+        Debug.Log("RpcLaunchPFCAnim");
+        UIPFCController.Instance.PFCWinAnim(p1Choice, p2Choice, winner);
+    }
+
 }
