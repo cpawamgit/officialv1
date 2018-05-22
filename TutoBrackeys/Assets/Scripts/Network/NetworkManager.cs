@@ -131,14 +131,11 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
         m_ActualSceneState = ActualSceneState.None;
     }
 
-  
-   
-    private void CheckIfEnoughPlayers(NetworkPlayer newPlayer)
+
+
+    public void ProgressToPFCScene()
     {
-        if (playerCount >= 2)
-        {
-            m_ActualSceneState = ActualSceneState.PFC;
-        }
+        m_ActualSceneState = ActualSceneState.PFC;
     }
 
     /// <summary>
@@ -148,9 +145,8 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
     {
         Debug.Log("Player joined");
         connectedPlayers.Add(newPlayer);
-        newPlayer.choiceDone += OnPlayerChoiceDone;
 
-        newPlayer.activesPlayersEvent += CheckIfEnoughPlayers;
+        newPlayer.choiceDone += OnPlayerChoiceDone;
 
         string activeScene = SceneManager.GetActiveScene().name;
 
@@ -180,7 +176,7 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
         if (index >= 0)
             connectedPlayers.RemoveAt(index);
 
-         UpdatePlayersIDs();
+        UpdatePlayersIDs();
 
         if (playerLeft != null)
             playerLeft(removedPlayer);
@@ -241,7 +237,7 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
 
 
 
-    public override void  ServerChangeScene(string newSceneName)
+    public override void ServerChangeScene(string newSceneName)
     {
         Debug.Log("ServerChangeScene");
 
@@ -261,7 +257,7 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
             sceneChanged(true, sceneName);      // call event "sceneChanged" on both server and clients
         }
 
-       
+
 
         //if (sceneChanged != null)               // Event call chez les clients pour afficher un message
         //{
@@ -269,7 +265,7 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
         //}
     }
 
-  
+
 
 
 
@@ -278,11 +274,11 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
         // Intentionally not calling base here - we want to control the spawning of prefabs
         Debug.Log("OnServerAddPlayer");
 
-       
+
         GameObject newPlayer = Instantiate<GameObject>(m_NetworkPlayerPrefab);
         DontDestroyOnLoad(newPlayer);
         NetworkServer.AddPlayerForConnection(conn, newPlayer.gameObject, playerControllerId); //associate prefab with his connection
-        
+
     }
 
 
@@ -339,7 +335,7 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
         //}
     }
 
-  
+
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {

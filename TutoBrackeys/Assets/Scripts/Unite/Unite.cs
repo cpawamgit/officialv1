@@ -1,16 +1,36 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 using System.Collections.Generic;
+using System;
+using UnityEngine.Events;
+
+
+
 
 public class Unite : MonoBehaviour, IDamageable
 {
+    public UnityAction takeDamageAction;
+    public UnityAction attackAction;
+
     [Header("Stats")]
     public float fireRate = 1f;
-    public GameObject bulletPrefab;
+    public GameObject bulletPrefab; // must be ignored if melee ,  faire un CustomEditor (https://docs.unity3d.com/ScriptReference/Editor.OnInspectorGUI.html) pour hide/show ref suivant le bool
     public int value = 50;
     public float CDBetweenSpawns;
     public int price;
+    [SerializeField]
+    private float baseResistance = 0f;
+    public float BaseResistance
+    { get { return baseResistance; } }
+    private float resistance;
+    public float Resistance
+    { get { return resistance; } }
 
+    [SerializeField]
+    public bool range = false;
+    public bool melee = false;
+
+    public int AAdamage; //auto attack damage, must be ignored if range , faire un CustomEditor (https://docs.unity3d.com/ScriptReference/Editor.OnInspectorGUI.html) pour hide/show ref suivant le bool
 
     public float startSpeed = 10f;
     public float startHealth = 100f;
@@ -29,12 +49,15 @@ public class Unite : MonoBehaviour, IDamageable
 
     [HideInInspector]
     public float speed;
+    [HideInInspector]
+    public Animator anim;
 
 
     private bool isDead = false;
     private float fireCountdown = 0f;
     private float health;
-    protected float resistance = 0f;
+
+   
 
     private EnemyHealthBar enemyHealthBar;
 
@@ -51,6 +74,8 @@ public class Unite : MonoBehaviour, IDamageable
 
     private void OnEnable()
     {
+        anim = GetComponent<Animator>();
+        resistance = baseResistance;
         speed = startSpeed;
         health = startHealth;
         enemyHealthBar = GetComponentInChildren<EnemyHealthBar>();
@@ -88,15 +113,31 @@ public class Unite : MonoBehaviour, IDamageable
 
     protected  virtual void Attack()
     {
-        GameObject bulletGO = MyObjectPooler.Instance.SpawnFromPool(bulletPrefab);
-        bulletGO.transform.position = targetter.firePoint.position;
-        bulletGO.transform.rotation = targetter.firePoint.rotation;
-        bulletGO.SetActive(true);
+        if (attackAction != null)
+        {
+            Debug.Log("fire attackAction");
+            attackAction();
+        }
 
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
 
-        if (bullet != null)
-            bullet.Seek(targetter.target);
+        if (range)
+        {
+            GameObject bulletGO = MyObjectPooler.Instance.SpawnFromPool(bulletPrefab);
+            bulletGO.transform.position = targetter.firePoint.position;
+            bulletGO.transform.rotation = targetter.firePoint.rotation;
+            bulletGO.SetActive(true);
+
+            Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+            if (bullet != null)
+                bullet.Seek(targetter.target);
+        }
+
+        if (melee)
+        {
+            targetter.targetEnemy.TakeDamage(AAdamage);
+        }
+  
 
     }
 
@@ -105,7 +146,18 @@ public class Unite : MonoBehaviour, IDamageable
 
     public virtual void TakeDamage(float amount)
     {
+        if (takeDamageAction != null)
+        {
+            takeDamageAction();
+        }
+
+        Debug.Log("TakeDamage amount = " + amount, this);
+
         float effectivDamage = amount * (1 - resistance);
+
+        Debug.Log("TakeDamage effectivDamage = " + effectivDamage, this);
+
+
         health -= effectivDamage;
         normalizedHealth = health / startHealth;
         enemyHealthBar.UpdateEnnemyHealth(normalizedHealth);
@@ -167,6 +219,11 @@ public class Unite : MonoBehaviour, IDamageable
         else
             effectDictionnary[effect].SetActive(false);
 
+    }
+
+   public void ModifyRes(float newRes)
+    {
+        resistance = newRes;
     }
 
 }

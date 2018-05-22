@@ -664,11 +664,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114334266923390696, guid: c38b47f8fab7c2045adeeda630e01bd0,
-        type: 2}
-      propertyPath: m_SpawnPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4373611740025456, guid: c38b47f8fab7c2045adeeda630e01bd0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 9.6015625
@@ -701,12 +696,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114334266923390696, guid: c38b47f8fab7c2045adeeda630e01bd0,
-        type: 2}
-      propertyPath: m_SpawnPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 1679492329173134, guid: 1b91381fc9350d743bf7dcc5c2d1f921,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c38b47f8fab7c2045adeeda630e01bd0, type: 2}
   m_IsPrefabParent: 0

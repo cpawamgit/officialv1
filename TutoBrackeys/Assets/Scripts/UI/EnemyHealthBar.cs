@@ -14,6 +14,8 @@ public class EnemyHealthBar : MonoBehaviour
     }
 
 
+ 
+
 
     public void UpdateEnnemyHealth(float normalizedHealth)
     {

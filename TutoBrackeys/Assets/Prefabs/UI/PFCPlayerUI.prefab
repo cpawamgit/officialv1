@@ -106,8 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5b1505727128d4b821cda4c61eeb70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_NetPlayer: {fileID: 0}
   nameText: {fileID: 114567284247127514}
   scoreText: {fileID: 114860919477191710}
+  PFCChoice: 0
 --- !u!114 &114860919477191710
 MonoBehaviour:
   m_ObjectHideFlags: 1
