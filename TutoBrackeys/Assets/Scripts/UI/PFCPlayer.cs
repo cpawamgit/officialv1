@@ -37,10 +37,10 @@ public class PFCPlayer : NetworkBehaviour
 
    
 
-        if (netPlayer != null)
-        {
-            netPlayer.syncVarsChanged += OnNetworkPlayerSyncVarChanged;
-        }
+        //if (netPlayer != null)
+        //{
+        //    netPlayer.syncVarsChanged += OnNetworkPlayerSyncVarChanged;
+        //}
 
 
         //UIPFCController.Instance.AddPlayer(this);
@@ -73,10 +73,10 @@ public class PFCPlayer : NetworkBehaviour
     }
 
 
-    private void OnNetworkPlayerSyncVarChanged(HeroNetworkPlayer player)
-    {
+    //private void OnNetworkPlayerSyncVarChanged(HeroNetworkPlayer player)
+    //{
 
-    }
+    //}
 
 
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class AgentSelector : MonoBehaviour
@@ -16,8 +17,19 @@ public class AgentSelector : MonoBehaviour
     #endregion
 
 
+    [System.Serializable]
+    public class ButtonClass
+    {
+        public Image imageButton;
+        //[HideInInspector]
+        public bool clicked = false;
+    }
+
+
     [HideInInspector]
-    public List<GameObject> selectedAgents;
+    public List<GameObject> selectedAgents = new List<GameObject>();
+
+    public List<ButtonClass> agentSelectButtons = new List<ButtonClass>();
 
 
     private void Start()
@@ -25,15 +37,38 @@ public class AgentSelector : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+
+    private void Update()
+    {
+        Debug.Log("selectedAgents.Count = " + selectedAgents.Count);
+    }
+
     public void SelectAgent(GameObject agentToSelect)
     {
-        if (!selectedAgents.Contains(agentToSelect))
-        {
-            selectedAgents.Add(agentToSelect);
-        }
-        else
+        
+        if (selectedAgents.Contains(agentToSelect))
         {
             selectedAgents.Remove(agentToSelect);
         }
+        else if (selectedAgents.Count < 3)
+        {
+            selectedAgents.Add(agentToSelect);
+        }
+      
+    }
+
+    public void ChangeButtonState(int button)
+    {
+        if (agentSelectButtons[button].clicked)
+        {
+            agentSelectButtons[button].imageButton.color = Color.white;
+            agentSelectButtons[button].clicked = false;
+        }
+        else if(selectedAgents.Count < 3)
+        {
+            agentSelectButtons[button].imageButton.color = Color.red;
+            agentSelectButtons[button].clicked = true;
+        }
+
     }
 }

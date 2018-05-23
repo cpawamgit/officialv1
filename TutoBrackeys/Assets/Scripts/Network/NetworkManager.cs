@@ -126,6 +126,12 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
                 ServerChangeScene(sceneToLoad);
                 matchMaker.SetMatchAttributes(matchInfo.networkId, false, 0, (success, info) => Debug.Log("Match hidden")); //Unlist
             }
+            else if (m_ActualSceneState == ActualSceneState.Game)
+            {
+                m_ActualSceneState = ActualSceneState.None;
+                Debug.Log("ServerChangeScene called dans update");
+                ServerChangeScene("MapRomainScene");
+            }
         }
 
         m_ActualSceneState = ActualSceneState.None;
@@ -136,6 +142,13 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
     public void ProgressToPFCScene()
     {
         m_ActualSceneState = ActualSceneState.PFC;
+    }
+
+    
+    public void ProgressToGame()
+    {
+        Debug.Log("ProgressToGame()");
+        m_ActualSceneState = ActualSceneState.Game;
     }
 
     /// <summary>
@@ -158,7 +171,10 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
         if (activeScene == "PFCscene")
             newPlayer.OnEnterPFCScene();
         else if (activeScene == "MapRomainScene")
+        {
+            Debug.Log(" else if (activeScene == MapRomainScene)");
             newPlayer.OnEnterMapRomainScene();
+        }
 
         if (playerJoined != null)
             playerJoined(newPlayer);
@@ -365,8 +381,6 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
         }
         else if (sceneName == "MapRomainScene")
         {
-            m_ActualSceneState = ActualSceneState.Game;
-
             // Tell all network players that they're in the game scene
             for (int i = 0; i < connectedPlayers.Count; ++i)
             {

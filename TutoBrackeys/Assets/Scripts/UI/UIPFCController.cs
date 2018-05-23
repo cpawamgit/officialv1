@@ -29,7 +29,6 @@ public class UIPFCController : MonoBehaviour {
     #endregion
 
 
-    private GameMaster gameMaster;
 
     public List<Button> buttonsList = new List<Button>();
     public List<Text> playerName = new List<Text>();
@@ -39,8 +38,11 @@ public class UIPFCController : MonoBehaviour {
     public GameObject buttons;
     public GameObject winAnim;
     public GameObject looseAnim;
+    public Text newRoundText;
 
 
+    private int roundNumber = 1;
+    private Animator anim;
 
     private HeroNetworkPlayer localPlayer;
     public HeroNetworkPlayer m_localPlayer
@@ -93,7 +95,10 @@ public class UIPFCController : MonoBehaviour {
 
 
 
-
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
 
 
@@ -121,7 +126,6 @@ public class UIPFCController : MonoBehaviour {
 
     public void PFCWinAnim(int p1Choice, int p2Choice, int winner)
     {
-        Animator anim = GetComponent<Animator>();
 
         Debug.Log("PFCWinAnim");
 
@@ -139,19 +143,62 @@ public class UIPFCController : MonoBehaviour {
 
         if (winner == -1)
         {
-            Debug.Log("Draw anim");
+            anim.SetTrigger("draw");
         }
         else if (winner == localPlayer.playerID)
         {
-            winAnim.SetActive(true);
             anim.SetTrigger("win");
         }
         else 
         {
-            looseAnim.SetActive(true);
             anim.SetTrigger("loose");
         }
 
+        Invoke("EndRound", 4f);
+
+    }
+
+    private void EndRound()
+    {
+        Debug.Log("EndRound");
+
+        localPlayer.PFCChoice = 0;
+        otherPlayer.PFCChoice = 0;
+
+        
+        if (localPlayer.hasAuthority && localPlayer.GetPFSScore >= 2)
+        {
+            Debug.Log("localPlayer.hasAuthority && localPlayer.GetPFSScore >= 2)");
+            localPlayer.CmdGameState();
+            return;
+        }
+
+
+        roundNumber++;
+        newRoundText.text = "ROUND " + roundNumber + " START";
+        anim.SetTrigger("newRound");
+
+        Invoke("StartNewRound", 2f);
+    }
+
+    private void StartNewRound()
+    {
+        anim.Play("Default");
+
+        for (int i = 0; i < animImageP1.Count; i++)
+        { 
+            if (animImageP1[i].activeSelf)
+                animImageP1[i].SetActive(false);
+        }
+        for (int i = 0; i < animImageP2.Count; i++)
+        {
+            if (animImageP2[i].activeSelf)
+                animImageP2[i].SetActive(false);
+        }
+
+        buttons.SetActive(true);
+
+        UpdateButtons();
     }
 
 }

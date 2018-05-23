@@ -52,3 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedAgents: []
+  agentSelectButtons:
+  - imageButton: {fileID: 0}
+    clicked: 0
+  - imageButton: {fileID: 0}
+    clicked: 0
+  - imageButton: {fileID: 0}
+    clicked: 0

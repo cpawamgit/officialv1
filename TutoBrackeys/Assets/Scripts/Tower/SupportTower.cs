@@ -13,6 +13,9 @@ public class SupportTower : Towers, IDamageable
     public bool boostMS;
     public float speedModifier;
 
+    [Header("BoostRes")]
+    public bool boostRes;
+    public float newRes;
 
     private bool waitForNextHeal = false;
 
@@ -26,6 +29,7 @@ public class SupportTower : Towers, IDamageable
 
     protected override void OnDisable()
     {
+        Debug.Log("OnDisable");
         foreach (GameObject ally in targetter.allies)
         {
             LosingTarget(ally);
@@ -47,6 +51,26 @@ public class SupportTower : Towers, IDamageable
         if (boostMS)
         {
             BoostMS();
+        }
+        if (boostRes)
+        {
+            BoostRes();
+        }
+    }
+
+    private void BoostRes()
+    {
+        foreach (GameObject ally in targetter.allies)
+        {
+            if (ally.tag == "Tower" )
+                continue;
+
+            if (ally.GetComponent<ModifyRes>() == null)
+            {
+                ModifyRes modifyRes = ally.AddComponent<ModifyRes>();
+                modifyRes.resModificator = newRes;
+                modifyRes.ChangeRes();
+            }
         }
     }
 
@@ -82,6 +106,14 @@ public class SupportTower : Towers, IDamageable
 
     public void LosingTarget(GameObject target)
     {
+        Debug.Log("LosingTarget");
+
+        if (!targetter.allies.Contains(target))
+            return;
+
+        if (target.GetComponent<IDamageable>() == null)
+            return;
+
         if (healer && target.tag != "Tower")
         {
             target.GetComponent<IDamageable>().TurnOnOffEffects("healEffect", false);
@@ -92,15 +124,22 @@ public class SupportTower : Towers, IDamageable
             target.GetComponent<IDamageable>().ModifySpeed(1);
             target.GetComponent<IDamageable>().TurnOnOffEffects("speedEffect", false);
         }
+
+        if (boostRes && target.tag != "Tower")
+        {
+            Destroy(target.GetComponent<ModifyRes>());
+
+            Debug.Log("boostRes LosingTarget");
+        }
     }
 
-    //protected override void Die()
-    //{
-    //    foreach (GameObject ally in targetter.allies)
-    //    {
-    //        LosingTarget(ally);
-    //    }
-    //    base.Die();
+    protected override void Die()
+    {
+        foreach (GameObject ally in targetter.allies)
+        {
+            LosingTarget(ally);
+        }
+        base.Die();
+    }
 
-    //}
 }
