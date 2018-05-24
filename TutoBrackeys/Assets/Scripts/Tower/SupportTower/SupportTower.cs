@@ -19,6 +19,8 @@ public class SupportTower : Towers, IDamageable
 
     private bool waitForNextHeal = false;
 
+    [Header("Effects")]
+    public GameObject resEffect;
 
 
     protected override void OnEnable()
@@ -69,6 +71,7 @@ public class SupportTower : Towers, IDamageable
             {
                 ModifyRes modifyRes = ally.AddComponent<ModifyRes>();
                 modifyRes.resModificator = newRes;
+                modifyRes.resEffect = resEffect;
                 modifyRes.ChangeRes();
             }
         }

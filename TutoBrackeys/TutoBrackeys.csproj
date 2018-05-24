@@ -300,7 +300,6 @@
     <Compile Include="Assets\Scripts\Hero\HeroMovement.cs" />
     <Compile Include="Assets\Scripts\Hero\Skills.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
-    <Compile Include="Assets\Scripts\ModifyRes.cs" />
     <Compile Include="Assets\Scripts\Network\Matchmaker.cs" />
     <Compile Include="Assets\Scripts\Network\NetworkManager.cs" />
     <Compile Include="Assets\Scripts\Network\NetworkPlayer.cs" />
@@ -319,7 +318,8 @@
     <Compile Include="Assets\Scripts\Tower\Bullet.cs" />
     <Compile Include="Assets\Scripts\Tower\ClassicTower.cs" />
     <Compile Include="Assets\Scripts\Tower\LaserTower.cs" />
-    <Compile Include="Assets\Scripts\Tower\SupportTower.cs" />
+    <Compile Include="Assets\Scripts\Tower\SupportTower\ModifyRes.cs" />
+    <Compile Include="Assets\Scripts\Tower\SupportTower\SupportTower.cs" />
     <Compile Include="Assets\Scripts\Tower\Towers.cs" />
     <Compile Include="Assets\Scripts\Tower\TurretBlueprint.cs" />
     <Compile Include="Assets\Scripts\UI\AgentSelectUiController.cs" />

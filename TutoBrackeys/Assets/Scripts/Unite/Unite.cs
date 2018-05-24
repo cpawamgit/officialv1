@@ -41,6 +41,7 @@ public class Unite : MonoBehaviour, IDamageable
     public Sprite image;
     public GameObject speedEffect;
     public GameObject healEffect;
+    public GameObject resEffect;
     public GameObject deathEffect;
 
     [Header("Setup")]
@@ -86,6 +87,7 @@ public class Unite : MonoBehaviour, IDamageable
         effectDictionnary = new Dictionary<string, GameObject>();
         effectDictionnary.Add("speedEffect", speedEffect);
         effectDictionnary.Add("healEffect", healEffect);
+        effectDictionnary.Add("resEffect", resEffect);
     }
 
 
