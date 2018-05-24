@@ -293,7 +293,9 @@
     <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\Hero\Garen\Garen2ndSkill.cs" />
     <Compile Include="Assets\Scripts\Hero\Garen\Garen3rdSkill.cs" />
+    <Compile Include="Assets\Scripts\Hero\Garen\GarenUltimate.cs" />
     <Compile Include="Assets\Scripts\Hero\Garen\Tourbilol.cs" />
+    <Compile Include="Assets\Scripts\Hero\Garen\UltimateTargetter.cs" />
     <Compile Include="Assets\Scripts\Hero\Hero.cs" />
     <Compile Include="Assets\Scripts\Hero\HeroMovement.cs" />
     <Compile Include="Assets\Scripts\Hero\Skills.cs" />
