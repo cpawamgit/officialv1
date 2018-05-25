@@ -109,5 +109,11 @@ public class Towers : MonoBehaviour, IDamageable
 
         MyObjectPooler.Instance.ReturnToPool(gameObject);
     }
+
+
+    public void ChangeRes(float newRes, string modify)
+    {
+        Debug.Log("Tower dont have Res, at least for now");
+    }
    
 }

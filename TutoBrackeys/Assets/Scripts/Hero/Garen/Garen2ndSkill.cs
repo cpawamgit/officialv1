@@ -31,7 +31,7 @@ public class Garen2ndSkill : Skills
 
     private void ResetSkill()
     {
-        hero.ModifyRes(hero.BaseResistance);
+        hero.ChangeRes(damageReduction, "remove");
         shieldEffect.SetActive(false);
     }
 
@@ -41,7 +41,7 @@ public class Garen2ndSkill : Skills
         if (skill == skill.dispo)
         {
             skill = skill.actif;
-            hero.ModifyRes(damageReduction);
+            hero.ChangeRes(damageReduction, "add");
             shieldEffect.SetActive(true);
         }
     }

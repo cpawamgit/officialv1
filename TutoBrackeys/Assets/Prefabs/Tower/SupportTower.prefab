@@ -267,7 +267,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149875437993688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -56.83, y: 0.06, z: 46.3}
+  m_LocalPosition: {x: 13.2, y: 0, z: 46.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4784873697920368}
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 20
-  alignement: {fileID: 11400000, guid: 9c0a7ca91ae7df448ac46f9d6c5c5701, type: 2}
+  alignement: {fileID: 11400000, guid: cb4c44286a20f674a938c5e23b1c92fe, type: 2}
   partToRotate: {fileID: 4259767869762020}
   turnSpeed: 10
   firePoint: {fileID: 4259767869762020}
@@ -673,8 +673,11 @@ MonoBehaviour:
   healer: 0
   healAmount: 8
   healRate: 1
-  boostMS: 1
+  boostMS: 0
   speedModifier: 1.5
+  boostRes: 1
+  newRes: 0.5
+  resEffect: {fileID: 1297276978674842, guid: 6b41f6a4698d06642a03b82f58f040e1, type: 2}
 --- !u!135 &135835121685561266
 SphereCollider:
   m_ObjectHideFlags: 1

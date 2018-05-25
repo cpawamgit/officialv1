@@ -41,6 +41,7 @@ public class Unite : MonoBehaviour, IDamageable
     public Sprite image;
     public GameObject speedEffect;
     public GameObject healEffect;
+    public GameObject resEffect;
     public GameObject deathEffect;
 
     [Header("Setup")]
@@ -86,11 +87,19 @@ public class Unite : MonoBehaviour, IDamageable
         effectDictionnary = new Dictionary<string, GameObject>();
         effectDictionnary.Add("speedEffect", speedEffect);
         effectDictionnary.Add("healEffect", healEffect);
+        effectDictionnary.Add("resEffect", resEffect);
     }
 
 
     protected virtual void Update()
     {
+        Debug.Log("resList.Count = "+ resList.Count);
+
+        for (int i = 0; i < resList.Count; i++)
+        {
+            Debug.Log("resList[" + i + "] = " + resList[i]);
+        }
+
         if (targetter.target == null)
         {
             return;
@@ -151,12 +160,7 @@ public class Unite : MonoBehaviour, IDamageable
             takeDamageAction();
         }
 
-        Debug.Log("TakeDamage amount = " + amount, this);
-
         float effectivDamage = amount * (1 - resistance);
-
-        Debug.Log("TakeDamage effectivDamage = " + effectivDamage, this);
-
 
         health -= effectivDamage;
         normalizedHealth = health / startHealth;
@@ -221,9 +225,46 @@ public class Unite : MonoBehaviour, IDamageable
 
     }
 
-   public void ModifyRes(float newRes)
+
+    List<float> resList = new List<float>();
+
+
+    private void AddRes(float newRes)
     {
-        resistance = newRes;
+        resList.Add(newRes);
+        ActualiseRes();
     }
+
+    private void RemoveRes(float newRes)
+    {
+        resList.Remove(newRes);
+        ActualiseRes();
+    }
+
+    private void ActualiseRes()
+    {
+        resistance = baseResistance;
+
+        if (resList.Count == 0)
+        {
+            resistance = baseResistance;
+        }
+        foreach (float res in resList)
+        {
+            resistance += (1 - resistance) / (1 / res);
+        }
+    }
+
+    public void ChangeRes(float newRes, string modify)
+    {
+        if (modify == "add")
+            AddRes(newRes);
+        else if (modify == "remove")
+            RemoveRes(newRes);
+        else
+            Debug.Log("wrong string");
+    }
+
+
 
 }

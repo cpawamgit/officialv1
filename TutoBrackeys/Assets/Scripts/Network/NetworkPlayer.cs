@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System;
 using HeroNetworkManager = NetworkManager;
+using HeroNetworkPlayer = NetworkPlayer;
 
 
 public class NetworkPlayer : NetworkBehaviour
@@ -20,7 +21,10 @@ public class NetworkPlayer : NetworkBehaviour
 
     [SyncVar(hook = "InitUI")]
     private int PFCScore = 0;
-    private int PFCChoice = 0;
+    public int GetPFSScore
+    { get { return PFCScore; } }
+
+    public int PFCChoice = 0;
 
     [SerializeField]
     protected GameObject m_PFCPlayerUI;
@@ -29,6 +33,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     public SceneFader sceneFader;
 
+    private int winner;
 
 
   
@@ -45,17 +50,29 @@ public class NetworkPlayer : NetworkBehaviour
     { get { return m_PlayerID; } }
 
 
-    /// <summary>
-    /// Get the PFCPlayerObject associate with this player
-    /// </summary>
-    public PFCPlayer PFCPlayer
-    { get; private set; }
+    ///// <summary>
+    ///// Get the PFCPlayerObject associate with this player
+    ///// </summary>
+    //public PFCPlayer PFCPlayer
+    //{ get; private set; }
 
     public NetworkPlayer s_LocalPlayer
     { get; private set; }
 
 
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("a"))
+        {
+            if (hasAuthority)
+            {
+                CmdGameState();
+
+            }
+        }
+    }
 
 
 
@@ -95,16 +112,16 @@ public class NetworkPlayer : NetworkBehaviour
         s_LocalPlayer = this;
 
 
-        CmdActivesPlayersEvent();
+        CmdActivesPlayers();
 
 
         //recupère le nom, la liste des unités sélectionnée... dans un fichier de sauvegarde (playerDataManager)
     }
 
     [Command]
-    private void CmdActivesPlayersEvent()
+    private void CmdActivesPlayers()
     {
-        Debug.Log("CmdActivesPlayersEvent");
+        Debug.Log("CmdActivesPlayers");
 
         //connected = true;
 
@@ -113,6 +130,12 @@ public class NetworkPlayer : NetworkBehaviour
             m_NetManager.ProgressToPFCScene();
         }
 
+    }
+
+    [Command]
+    public void CmdGameState()
+    {
+        m_NetManager.ProgressToGame();
     }
 
     [ClientRpc]
@@ -125,7 +148,6 @@ public class NetworkPlayer : NetworkBehaviour
     /// <summary>
     /// Called when we enter MapRomainScene
     /// </summary>
-    [Client]
     public void OnEnterMapRomainScene()
     {
         if (!hasAuthority)
@@ -140,9 +162,6 @@ public class NetworkPlayer : NetworkBehaviour
     /// </summary>
     public void OnEnterPFCScene()
     {
-        if (PFCPlayer != null)
-            return;
-
         Debug.Log("OnEnterPFCScene");
 
         UIPFCController.Instance.AddPlayer(this);
@@ -173,11 +192,6 @@ public class NetworkPlayer : NetworkBehaviour
 
         base.OnNetworkDestroy();
 
-        if (PFCPlayer != null)
-        {
-            Destroy(PFCPlayer.gameObject);
-        }
-
         if (m_NetManager != null)
         {
             m_NetManager.DeregisterNetworkPlayer(this);
@@ -197,6 +211,7 @@ public class NetworkPlayer : NetworkBehaviour
     }
 
 
+
     [Command]
     private void CmdSetPFCChoice(int choice)
     {
@@ -209,7 +224,7 @@ public class NetworkPlayer : NetworkBehaviour
     [Command]
     private void CmdAreAllChoicesDone()
     {
-        foreach (NetworkPlayer player in HeroNetworkManager.Instance.connectedPlayers)
+        foreach (HeroNetworkPlayer player in HeroNetworkManager.Instance.connectedPlayers)
         {
             if (player.PFCChoice == 0)
             {
@@ -227,50 +242,72 @@ public class NetworkPlayer : NetworkBehaviour
     private void CmdCompareChoices()
     {
         Debug.Log("CompareChoices");
-        int localChoice = PFCChoice;
-        int otherChoice = m_NetManager.connectedPlayers[1].PFCChoice;
+        int localChoice = UIPFCController.Instance.m_localPlayer.PFCChoice;
+        int otherChoice = UIPFCController.Instance.m_otherPlayer.PFCChoice;
 
+        winner = -1;
 
 
         if (localChoice == otherChoice)
         {
             Debug.Log("DRAW !!!!");
         }
-
-        switch (localChoice)
+        else
         {
-            case 1:
-                if (otherChoice == 2)
-                {
-                    m_NetManager.connectedPlayers[1].PFCScore++;
-                }
-                if (otherChoice == 3)
-                {
-                    PFCScore++;
-                }
-                break;
+            switch (localChoice)
+            {
+                case 1:
+                    if (otherChoice == 2)
+                    {
+                        UIPFCController.Instance.m_otherPlayer.PFCScore++;
+                        winner = 1;
+                    }
+                    if (otherChoice == 3)
+                    {
+                        UIPFCController.Instance.m_localPlayer.PFCScore++;
+                        winner = 0;
+                    }
+                    break;
 
-            case 2:
-                if (otherChoice == 1)
-                {
-                    PFCScore++;
-                }
-                if (otherChoice == 3)
-                {
-                    m_NetManager.connectedPlayers[1].PFCScore++;
-                }
-                break;
+                case 2:
+                    if (otherChoice == 1)
+                    {
+                        UIPFCController.Instance.m_localPlayer.PFCScore++;
+                        winner = 0;
+                    }
+                    if (otherChoice == 3)
+                    {
+                        UIPFCController.Instance.m_otherPlayer.PFCScore++;
+                        winner = 1;
+                    }
+                    break;
 
-            case 3:
-                if (otherChoice == 1)
-                {
-                    m_NetManager.connectedPlayers[1].PFCScore++;
-                }
-                if (otherChoice == 2)
-                {
-                    PFCScore++;
-                }
-                break;
+                case 3:
+                    if (otherChoice == 1)
+                    {
+                        UIPFCController.Instance.m_otherPlayer.PFCScore++;
+                        winner = 1;
+                    }
+                    if (otherChoice == 2)
+                    {
+                        UIPFCController.Instance.m_localPlayer.PFCScore++;
+                        winner = 0;
+                    }
+                    break;
+            }
         }
+        
+        RpcLaunchPFCAnim(localChoice, otherChoice, winner);
+
+        localChoice = 0;
+        otherChoice = 0;
     }
+
+    [ClientRpc]
+    private void RpcLaunchPFCAnim(int p1Choice, int p2Choice, int winner)
+    {
+        Debug.Log("RpcLaunchPFCAnim");
+        UIPFCController.Instance.PFCWinAnim(p1Choice, p2Choice, winner);
+    }
+
 }

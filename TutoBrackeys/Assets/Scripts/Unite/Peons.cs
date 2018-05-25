@@ -192,4 +192,9 @@ public class Peons : MonoBehaviour, IDamageable
         onTheWay = false;
     }
 
+    public void ChangeRes(float newRes, string modify)
+    {
+        Debug.Log("Peons dont have Res, at least for now");
+    }
+
 }

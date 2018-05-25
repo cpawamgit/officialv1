@@ -293,7 +293,9 @@
     <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\Hero\Garen\Garen2ndSkill.cs" />
     <Compile Include="Assets\Scripts\Hero\Garen\Garen3rdSkill.cs" />
+    <Compile Include="Assets\Scripts\Hero\Garen\GarenUltimate.cs" />
     <Compile Include="Assets\Scripts\Hero\Garen\Tourbilol.cs" />
+    <Compile Include="Assets\Scripts\Hero\Garen\UltimateTargetter.cs" />
     <Compile Include="Assets\Scripts\Hero\Hero.cs" />
     <Compile Include="Assets\Scripts\Hero\HeroMovement.cs" />
     <Compile Include="Assets\Scripts\Hero\Skills.cs" />
@@ -316,9 +318,11 @@
     <Compile Include="Assets\Scripts\Tower\Bullet.cs" />
     <Compile Include="Assets\Scripts\Tower\ClassicTower.cs" />
     <Compile Include="Assets\Scripts\Tower\LaserTower.cs" />
-    <Compile Include="Assets\Scripts\Tower\SupportTower.cs" />
+    <Compile Include="Assets\Scripts\Tower\SupportTower\ModifyRes.cs" />
+    <Compile Include="Assets\Scripts\Tower\SupportTower\SupportTower.cs" />
     <Compile Include="Assets\Scripts\Tower\Towers.cs" />
     <Compile Include="Assets\Scripts\Tower\TurretBlueprint.cs" />
+    <Compile Include="Assets\Scripts\UI\AgentSelectUiController.cs" />
     <Compile Include="Assets\Scripts\UI\EnemyHealthBar.cs" />
     <Compile Include="Assets\Scripts\UI\LevelSelector.cs" />
     <Compile Include="Assets\Scripts\UI\LivesUI.cs" />

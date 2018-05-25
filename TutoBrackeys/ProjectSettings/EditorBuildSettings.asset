@@ -29,3 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PFCscene.unity
     guid: 08a5e0cf17d658b4f9f5570f80fa0cd7
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: f7e09ba56ee47d4458f6a870070ccea3

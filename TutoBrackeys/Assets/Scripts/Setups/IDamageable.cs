@@ -9,4 +9,5 @@ public interface IDamageable
     void ModifySpeed(float pct);
     void Heal(float amount);
     void TurnOnOffEffects(string effect, bool stateToTurn);
+    void ChangeRes(float newRes, string modify);
 }
