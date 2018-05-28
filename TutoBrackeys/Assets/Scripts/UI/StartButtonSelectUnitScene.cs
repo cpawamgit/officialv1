@@ -9,7 +9,10 @@ public class StartButtonSelectUnitScene : MonoBehaviour
     public void StartGame(string levelToGo)
     {
         if (AgentSelector.Instance.selectedAgents.Count == 3)
+        {
+            AgentSelector.Instance.ConvertGoToPool();
             sceneFader.FadeTo(levelToGo);
+        }
         else
             Debug.Log("Not enough agents selected");
     }

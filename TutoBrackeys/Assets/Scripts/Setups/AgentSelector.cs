@@ -31,6 +31,8 @@ public class AgentSelector : MonoBehaviour
 
     public List<ButtonClass> agentSelectButtons = new List<ButtonClass>();
 
+    public List<Pool> selectedAgentPool = new List<Pool>();
+
 
     private void Start()
     {
@@ -70,5 +72,20 @@ public class AgentSelector : MonoBehaviour
             agentSelectButtons[button].clicked = true;
         }
 
+    }
+
+    public void ConvertGoToPool()
+    {
+        foreach (GameObject Go in selectedAgents)
+        {
+            Pool poolObject = new Pool();
+            poolObject.tag = Go.name;
+            poolObject.prefab = Go;
+            poolObject.size = 20;
+            poolObject.willGrow = true;
+
+            selectedAgentPool.Add(poolObject);
+        }
+        Debug.Log("After ConvertGoToPool selectedAgentPool count : " + selectedAgentPool.Count);
     }
 }

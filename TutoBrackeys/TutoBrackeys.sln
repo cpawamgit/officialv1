@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TutoBrackeys", "TutoBrackeys.csproj", "{4EA29C95-2E42-1070-52BE-7ED7983FA152}"
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TutoBrackeys", "Assembly-CSharp.csproj", "{0E572FC0-A577-24F6-6710-8A0D8DC90130}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4EA29C95-2E42-1070-52BE-7ED7983FA152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EA29C95-2E42-1070-52BE-7ED7983FA152}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EA29C95-2E42-1070-52BE-7ED7983FA152}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EA29C95-2E42-1070-52BE-7ED7983FA152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E572FC0-A577-24F6-6710-8A0D8DC90130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E572FC0-A577-24F6-6710-8A0D8DC90130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E572FC0-A577-24F6-6710-8A0D8DC90130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E572FC0-A577-24F6-6710-8A0D8DC90130}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

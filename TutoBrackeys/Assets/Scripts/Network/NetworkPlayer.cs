@@ -35,6 +35,8 @@ public class NetworkPlayer : NetworkBehaviour
 
     private int winner;
 
+    public GameObject scenePooler;
+
 
   
     [SyncVar]
@@ -150,12 +152,42 @@ public class NetworkPlayer : NetworkBehaviour
     /// </summary>
     public void OnEnterMapRomainScene()
     {
+        if (!isServer)
+            return;
         if (!hasAuthority)
             return;
-
         Debug.Log("OnEnterMapRomainScene");
+        if (isServer)
+        {
+            GameManager2.Instance.gameObject.AddComponent<MyObjectPooler>();
+        }
+        Instantiate(scenePooler);
+        SendGoToPooler();
+        if (isServer)
+            MyObjectPooler.Instance.Init();
     }
 
+    public void SendGoToPooler()
+    {
+        Debug.Log("Entering SendGoToPooler");
+        Debug.Log("selectedAgentPool" + AgentSelector.Instance.selectedAgentPool.Count);
+        foreach (Pool poolObject in AgentSelector.Instance.selectedAgentPool)
+        {
+            Debug.Log("Foreach SendGoToPooler");
+            CmdSendPool(poolObject);
+        }
+    }
+
+    [Command]
+    public void CmdSendPool(Pool poolbject)
+    {
+        Debug.Log("Entering CmdSendPool");
+        if (poolbject == null)
+        {
+            Debug.Log("poolObject == NULL !!!");
+        }
+        MyObjectPooler.Instance.FillPoolList(poolbject);
+    }
 
     /// <summary>
     /// Called when we enter PFCScene

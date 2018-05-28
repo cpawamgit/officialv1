@@ -5,14 +5,7 @@ using UnityEngine;
 public class MyObjectPooler : MonoBehaviour
 {
 
-    [System.Serializable]
-    public class Pool
-    {
-        public string tag;
-        public GameObject prefab;
-        public int size;
-        public bool willGrow = true;
-    }
+    
 
     #region Singleton
     public static MyObjectPooler Instance;
@@ -23,17 +16,28 @@ public class MyObjectPooler : MonoBehaviour
     }
     #endregion
 
-    public List<Pool> pools;
+    public List<Pool> pools = new List<Pool>();
     public Dictionary<string, List<GameObject>> poolDictionary; // associate a game object's list to the prefab name
     public Dictionary<string, Pool> poolToListDictionary;      // associate a pool to the prefab name
 
-    void Start ()
+    public void Init ()
     {
+        if (pools == null)
+        {
+            Debug.Log("pools = NULL !!!!!");
+        }
+
+        if (pools.Count == 0)
+        {
+            Debug.Log("pools.count = 0 !!!!!");
+        }
+        Debug.Log("entering Init");
         poolDictionary = new Dictionary<string, List<GameObject>>();
         poolToListDictionary = new Dictionary<string, Pool>();
 
         foreach (Pool pool in pools)
         {
+            Debug.Log("Foreach pool in pools Init, pool.prefab = " + pool.prefab);
             List<GameObject> objectPool = new List<GameObject>();
 
             for (int i = 0; i < pool.size; i++) // Instantiate as unactives prefabs as count value and place them in a list
@@ -51,7 +55,11 @@ public class MyObjectPooler : MonoBehaviour
         }
 	}
 
-
+    public void FillPoolList(Pool poolObject)
+    {
+        Debug.Log("Entering FillPoolList");
+        pools.Add(poolObject);
+    }
  
 
     public GameObject SpawnFromPool(GameObject objToSpawn)

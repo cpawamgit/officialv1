@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 114276690605217302}
   - component: {fileID: 114665901113741128}
   - component: {fileID: 54424643510919566}
+  - component: {fileID: 114189851961344628}
   m_Layer: 0
   m_Name: Enemy_Tough
   m_TagString: Enemy
@@ -297,6 +298,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: c8b2196431de374469761a5b91e46358, type: 2}
   m_StaticBatchInfo:
@@ -331,6 +333,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 8af865ea269a9ad439aaf56037ada94f, type: 2}
   m_StaticBatchInfo:
@@ -365,6 +368,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: b2366069a1b1f8d4091613904645b2ac, type: 2}
   m_StaticBatchInfo:
@@ -507,6 +511,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 4152965333246110}
   backgroundBar: {fileID: 4863516228804356}
+--- !u!114 &114189851961344628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1804851671011920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 109
+    i1: 190
+    i2: 26
+    i3: 204
+    i4: 49
+    i5: 88
+    i6: 105
+    i7: 36
+    i8: 169
+    i9: 236
+    i10: 250
+    i11: 181
+    i12: 214
+    i13: 48
+    i14: 238
+    i15: 238
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114276690605217302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -518,26 +554,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c2660f63aeae54383c69ab135536f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
-  alignement: {fileID: 11400000, guid: 9c0a7ca91ae7df448ac46f9d6c5c5701, type: 2}
-  partToRotate: {fileID: 4210812766772060}
-  turnSpeed: 10
-  firePoint: {fileID: 4210812766772060}
   fireRate: 1
   bulletPrefab: {fileID: 1267483021203456, guid: b851f6fc584cefa449a0301acb85a3ab,
     type: 2}
   value: 140
+  CDBetweenSpawns: 7
+  price: 50
+  baseResistance: 0
+  range: 15
+  melee: 0
+  AAdamage: 0
   startSpeed: 7
   startHealth: 350
   normalizedHealth: 0.5
   image: {fileID: 21300000, guid: 426c078e37fe2e948b4a7c7293626232, type: 3}
   speedEffect: {fileID: 1634520241216582}
   healEffect: {fileID: 1074710811965850}
+  resEffect: {fileID: 0}
   deathEffect: {fileID: 1889897949588580, guid: 142033a1ea9817c4ca9ee48dcd743046,
     type: 2}
+  targetter: {fileID: 0}
   speed: 10
-  CDBetweenSpawns: 7
-  price: 50
+  anim: {fileID: 0}
 --- !u!114 &114665901113741128
 MonoBehaviour:
   m_ObjectHideFlags: 1

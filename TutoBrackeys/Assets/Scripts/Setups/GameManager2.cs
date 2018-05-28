@@ -10,6 +10,17 @@ public class GameManager2 : MonoBehaviour {
 
     public static bool GameIsOver;
 
+    public static GameManager2 Instance;
+
+    #region singleton
+    private void Awake()
+    {
+        if (Instance != null)
+            Destroy(this);
+        else
+            Instance = this;
+    }
+    #endregion
 
     private void Start()
     {

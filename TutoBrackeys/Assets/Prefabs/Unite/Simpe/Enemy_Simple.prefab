@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 54066586058399482}
   - component: {fileID: 136839564729658720}
   - component: {fileID: 95309229542515884}
+  - component: {fileID: 114419974414824870}
   m_Layer: 2
   m_Name: Enemy_Simple
   m_TagString: Enemy
@@ -329,6 +330,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 8dc48097abae4314fa490c838bfe7f4b, type: 2}
   m_StaticBatchInfo:
@@ -363,6 +365,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: b2366069a1b1f8d4091613904645b2ac, type: 2}
   m_StaticBatchInfo:
@@ -397,6 +400,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 8af865ea269a9ad439aaf56037ada94f, type: 2}
   m_StaticBatchInfo:
@@ -471,6 +475,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!108 &108557545259279872
 Light:
   m_ObjectHideFlags: 1
@@ -570,6 +575,7 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 4bf5977edc97bc74aab6d263949a634c, type: 3}
   speedEffect: {fileID: 1235121201879710}
   healEffect: {fileID: 1922530860810064}
+  resEffect: {fileID: 0}
   deathEffect: {fileID: 1889897949588580, guid: b67ef08b0da70ef4b901900ba8080e29,
     type: 2}
   targetter: {fileID: 114711852704468588}
@@ -588,6 +594,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 4866113355382850}
   backgroundBar: {fileID: 4501986061722404}
+--- !u!114 &114419974414824870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1804851671011920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 67
+    i1: 230
+    i2: 183
+    i3: 140
+    i4: 189
+    i5: 156
+    i6: 113
+    i7: 100
+    i8: 203
+    i9: 214
+    i10: 183
+    i11: 33
+    i12: 183
+    i13: 236
+    i14: 170
+    i15: 40
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114665901113741128
 MonoBehaviour:
   m_ObjectHideFlags: 1
