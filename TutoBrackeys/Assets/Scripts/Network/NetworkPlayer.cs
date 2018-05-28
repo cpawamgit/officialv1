@@ -152,8 +152,6 @@ public class NetworkPlayer : NetworkBehaviour
     /// </summary>
     public void OnEnterMapRomainScene()
     {
-        if (!isServer)
-            return;
         if (!hasAuthority)
             return;
         Debug.Log("OnEnterMapRomainScene");
