@@ -28,6 +28,8 @@ public class AgentSelector : MonoBehaviour
 
     [HideInInspector]
     public List<GameObject> selectedAgents = new List<GameObject>();
+    public List<string> selectedAgentsString = new List<string>();
+
 
     public List<ButtonClass> agentSelectButtons = new List<ButtonClass>();
 
@@ -38,10 +40,6 @@ public class AgentSelector : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        Debug.Log("selectedAgents.Count = " + selectedAgents.Count);
-    }
 
     public void SelectAgent(GameObject agentToSelect)
     {
@@ -49,13 +47,18 @@ public class AgentSelector : MonoBehaviour
         if (selectedAgents.Contains(agentToSelect))
         {
             selectedAgents.Remove(agentToSelect);
+            selectedAgentsString.Remove(agentToSelect.name);
         }
         else if (selectedAgents.Count < 3)
         {
             selectedAgents.Add(agentToSelect);
+            selectedAgentsString.Add(agentToSelect.name);
         }
-      
+
     }
+
+
+
 
     public void ChangeButtonState(int button)
     {

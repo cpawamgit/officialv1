@@ -5,7 +5,11 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - hero: {instanceID: 0}
+  - m_PFCPlayerUI: {instanceID: 0}
+  - m_hero: {instanceID: 0}
+  - sceneFader: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

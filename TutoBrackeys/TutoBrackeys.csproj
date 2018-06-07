@@ -303,6 +303,9 @@
     <Compile Include="Assets\Scripts\Network\Matchmaker.cs" />
     <Compile Include="Assets\Scripts\Network\NetworkManager.cs" />
     <Compile Include="Assets\Scripts\Network\NetworkPlayer.cs" />
+    <Compile Include="Assets\Scripts\Network\NetworkPool\NetworkedPool.cs" />
+    <Compile Include="Assets\Scripts\Network\NetworkPool\NetworkedPoolObject.cs" />
+    <Compile Include="Assets\Scripts\Network\NetworkPool\PoolManager.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerStats.cs" />

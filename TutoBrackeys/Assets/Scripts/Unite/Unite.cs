@@ -93,12 +93,7 @@ public class Unite : MonoBehaviour, IDamageable
 
     protected virtual void Update()
     {
-        Debug.Log("resList.Count = "+ resList.Count);
 
-        for (int i = 0; i < resList.Count; i++)
-        {
-            Debug.Log("resList[" + i + "] = " + resList[i]);
-        }
 
         if (targetter.target == null)
         {

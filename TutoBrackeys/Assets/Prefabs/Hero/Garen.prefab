@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 114848864872947426}
   - component: {fileID: 114463212297640724}
   - component: {fileID: 114562697976573210}
+  - component: {fileID: 114579283694156074}
   m_Layer: 0
   m_Name: Garen
   m_TagString: Untagged
@@ -1130,6 +1131,38 @@ MonoBehaviour:
   hero: {fileID: 0}
   ultimateDamage: 1000
   ultimateTargetter: {fileID: 114105005402163378}
+--- !u!114 &114579283694156074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979042642929278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 142
+    i1: 207
+    i2: 230
+    i3: 104
+    i4: 225
+    i5: 134
+    i6: 191
+    i7: 36
+    i8: 235
+    i9: 226
+    i10: 253
+    i11: 97
+    i12: 9
+    i13: 245
+    i14: 50
+    i15: 45
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114601654637327672
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -664,6 +664,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114334266923390696, guid: c38b47f8fab7c2045adeeda630e01bd0,
+        type: 2}
+      propertyPath: m_SpawnPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4373611740025456, guid: c38b47f8fab7c2045adeeda630e01bd0, type: 2}
       propertyPath: m_LocalPosition.x
       value: 9.6015625
@@ -696,6 +701,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114334266923390696, guid: c38b47f8fab7c2045adeeda630e01bd0,
+        type: 2}
+      propertyPath: m_SpawnPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1979042642929278, guid: 8ecfe668e186bf24ebe2fd6109f5322d,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c38b47f8fab7c2045adeeda630e01bd0, type: 2}
   m_IsPrefabParent: 0
@@ -774,8 +785,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 937092295}
   m_HandleRect: {fileID: 937092294}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

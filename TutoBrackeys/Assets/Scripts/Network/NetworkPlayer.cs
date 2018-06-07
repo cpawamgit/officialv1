@@ -10,13 +10,15 @@ using HeroNetworkPlayer = NetworkPlayer;
 public class NetworkPlayer : NetworkBehaviour
 {
 
-    public event Action<NetworkPlayer> syncVarsChanged;
+    public event Action<HeroNetworkPlayer> syncVarsChanged;
 
     //Server only event
-    public event Action<NetworkPlayer> activesPlayersEvent;
+    public event Action<HeroNetworkPlayer> activesPlayersEvent;
 
     //Server only event
-    public event Action<NetworkPlayer> choiceDone;
+    public event Action<HeroNetworkPlayer> choiceDone;
+
+
 
 
     [SyncVar(hook = "InitUI")]
@@ -24,19 +26,24 @@ public class NetworkPlayer : NetworkBehaviour
     public int GetPFSScore
     { get { return PFCScore; } }
 
+    [SyncVar(hook = "RegisterAgentSelectedList")]
+    public bool playersReadyInGameScene = false;
+
+
     public int PFCChoice = 0;
 
     [SerializeField]
     protected GameObject m_PFCPlayerUI;
     [SerializeField]
-    protected GameObject m_hero;
+    protected GameObject hero;
 
     public SceneFader sceneFader;
 
     private int winner;
 
+    private Dictionary<string, NetworkedPool> poolDictionary;
 
-  
+
     [SyncVar]
     private int m_PlayerID;
 
@@ -150,11 +157,79 @@ public class NetworkPlayer : NetworkBehaviour
     /// </summary>
     public void OnEnterMapRomainScene()
     {
+        poolDictionary = PoolManager.Instance.poolDictionnary;
+
         if (!hasAuthority)
             return;
 
-        Debug.Log("OnEnterMapRomainScene");
+       
+        Debug.Log("OnEnterMapRomainScene", this);
+
+        CmdInstantiateHero();
     }
+
+    [Command]
+    private void CmdInstantiateHero()
+    {
+        GameObject _hero = Instantiate(hero, new Vector3(0, 0, -63), Quaternion.identity);
+        NetworkServer.Spawn(_hero);
+    }
+
+
+
+    [Command]
+    public void CmdAllPlayerInGameScene()
+    {
+        foreach (HeroNetworkPlayer player in m_NetManager.connectedPlayers)
+        {
+            Debug.Log("CmdAllPlayerInGameScene", this);
+            player.playersReadyInGameScene = true;
+        }
+    }
+
+
+    //hooked to playersReadyInGameScene
+    private void RegisterAgentSelectedList(bool value)
+    {
+        playersReadyInGameScene = value;
+
+        if (!hasAuthority)
+            return;
+
+        Debug.Log("RegisterAgentSelectedList", this);
+
+        foreach (string agent in AgentSelector.Instance.selectedAgentsString)
+        {
+            CmdRegisterAgentSelectedList(agent);
+        }
+    }
+
+    [Command]
+    private void CmdRegisterAgentSelectedList(string agent)
+    {
+        Debug.Log("CmdRegisterAgentSelectedList", this);
+
+        RpcRegisterAgentSelectedList(agent);
+    }
+
+    [ClientRpc]
+    private void RpcRegisterAgentSelectedList(string agent)
+    {
+        Debug.Log("RpcRegisterAgentSelectedList", this);
+        Debug.Log("agent = " + agent);
+
+        
+
+        if (poolDictionary[agent] != null)
+        {
+            if (!poolDictionary[agent].gameObject.activeSelf)
+            {
+                poolDictionary[agent].gameObject.SetActive(true);
+            }
+            poolDictionary[agent].poolSize += 23;
+        }
+    }
+
 
 
     /// <summary>
@@ -215,7 +290,7 @@ public class NetworkPlayer : NetworkBehaviour
     [Command]
     private void CmdSetPFCChoice(int choice)
     {
-        Debug.Log("CmdSetPFCChoice", this);
+        Debug.Log("CmdSetPFCChoice");
         PFCChoice = choice;
     }
 
@@ -296,7 +371,7 @@ public class NetworkPlayer : NetworkBehaviour
                     break;
             }
         }
-        
+
         RpcLaunchPFCAnim(localChoice, otherChoice, winner);
 
         localChoice = 0;

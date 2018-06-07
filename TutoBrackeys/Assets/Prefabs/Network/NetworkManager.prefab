@@ -73,8 +73,7 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1485848924065796, guid: f1fb445723ac5134f9da64e4d4b355b3,
-    type: 2}
+  m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
@@ -82,7 +81,6 @@ MonoBehaviour:
   m_SpawnPrefabs:
   - {fileID: 1485848924065796, guid: f1fb445723ac5134f9da64e4d4b355b3, type: 2}
   - {fileID: 1323229654759790, guid: 69661a38856d52e46b5c9491b68d5773, type: 2}
-  - {fileID: 1679492329173134, guid: 1b91381fc9350d743bf7dcc5c2d1f921, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -135,7 +133,7 @@ MonoBehaviour:
   m_MatchHost: mm.unet.unity3d.com
   m_MatchPort: 443
   matchName: default
-  matchSize: 2
+  matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
   sceneToLoad: PFCscene
@@ -148,7 +146,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1244637834943052}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 

@@ -64,6 +64,6 @@ public class WaveSpawner : MonoBehaviour {
 
     void SpawnEnemy(GameObject enemy)
     {
-        MyObjectPooler.Instance.SpawnFromPoolAt(enemy, spawnPoint.position, spawnPoint.rotation);
+        //MyObjectPooler.Instance.SpawnFromPoolAt(enemy, spawnPoint.position, spawnPoint.rotation);
     }
 }

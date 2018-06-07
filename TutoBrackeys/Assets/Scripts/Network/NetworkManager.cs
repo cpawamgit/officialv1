@@ -144,7 +144,7 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
         m_ActualSceneState = ActualSceneState.PFC;
     }
 
-    
+
     public void ProgressToGame()
     {
         Debug.Log("ProgressToGame()");
@@ -200,6 +200,7 @@ public class NetworkManager : UnityEngine.Networking.NetworkManager
         if (removedPlayer != null)
             removedPlayer.choiceDone -= OnPlayerChoiceDone;
     }
+
 
 
     /// <summary>

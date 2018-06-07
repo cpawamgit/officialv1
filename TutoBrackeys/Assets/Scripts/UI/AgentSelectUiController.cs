@@ -9,7 +9,7 @@ public class AgentSelectUiController : MonoBehaviour
 
     private void Update()
     {
-        if (AgentSelector.Instance.selectedAgents.Count >= 3)
+        if (AgentSelector.Instance.selectedAgents.Count >= 2)
         {
             startGameButton.interactable = true;
         }
